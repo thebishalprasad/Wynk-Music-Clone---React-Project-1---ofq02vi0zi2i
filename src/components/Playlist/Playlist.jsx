@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
-const Playlists = () => {
+const Playlist = () => {
   const location = useLocation();
   const data = location.state?.data || [];
 
@@ -18,4 +18,4 @@ const Playlists = () => {
   );
 };
 
-export default Playlists; 
+export default Playlist; 

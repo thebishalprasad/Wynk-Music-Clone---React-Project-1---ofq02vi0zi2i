@@ -85,15 +85,15 @@ const MoodSongs = ({ mood }) => {
 
     const  MusicList = (data) => {
         if(data === 'happy'){
-            navigate('/playlists', { state: { data: happy } });
+            navigate('/playlist', { state: { data: happy } });
         }if(data === 'sad'){
-            navigate('/playlists', { state: { data: sad } });
+            navigate('/playlist', { state: { data: sad } });
         }
         if(data === 'excited'){
-            navigate('/playlists', { state: { data: excited } });
+            navigate('/playlist', { state: { data: excited } });
         }
         if(data === 'romantic'){
-            navigate('/playlists', { state: { data: romantic } });
+            navigate('/playlist', { state: { data: romantic } });
         }
         
     }
