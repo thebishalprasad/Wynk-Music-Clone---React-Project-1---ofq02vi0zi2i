@@ -14,7 +14,7 @@ function Header() {
 
     return (
         <header>
-            <div className='flex h-[70px] w-full  text-[#f9f9f9] gap-7 items-center' >
+            <div className='flex h-[70px] w-full  text-[#f9f9f9] gap-7 items-center overflow-x-auto' >
                 <div className={`hover:underline underline-offset-[6px] ml-24 ${activeLink === 'All' ? 'text-white' : 'text-blue-500'}`}>
                     <a title="All" onClick={() => handleLinkClick('All')}>All</a>
                 </div>

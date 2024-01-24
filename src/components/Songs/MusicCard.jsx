@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Slider from "react-slick";
-import { PROJECT_ID } from '../constant';
+import { PROJECT_ID } from '../../constant';
 
 const MusicCard = () => {
   const [data, setdata] = useState([]);
@@ -62,7 +62,7 @@ const MusicCard = () => {
 
   return (
     <div className='mx-8 px-10 '>
-      <h2 className='text-2xl text-white pl-3'>New Releases</h2>
+      <h2 className='text-2xl text-white pl-3'>Hindi Top 20</h2>
       <div className='h-full w-full pt-4 py-4'>
         <Slider {...settings}>
           {data.map((m) => (
