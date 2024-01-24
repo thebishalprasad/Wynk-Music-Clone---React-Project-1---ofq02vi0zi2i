@@ -1,14 +1,13 @@
-// MoodSongs.jsx
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import Slider from 'react-slick';
-import Sad from '../assets/images/Sad.png'
-import Happy from '../assets/images/Happy.jpg'
-import Excited from'../assets/images/Excited.jpg'
-import Romantic from '../assets/images/Romantic.jpg'
-import Dance from '../assets/images/Dance.jpg'
-import Party from '../assets/images/Party.jpg'
-import { PROJECT_ID } from '../constant';
+import Sad from '../../assets/images/Sad.png'
+import Happy from '../../assets/images/Happy.jpg'
+import Excited from'../../assets/images/Excited.jpg'
+import Romantic from '../../assets/images/Romantic.jpg'
+import Dance from '../../assets/images/Dance.jpg'
+import Party from '../../assets/images/Party.jpg'
+import { PROJECT_ID } from '../../constant';
 import { useNavigate } from 'react-router-dom';
 
 const MoodSongs = ({ mood }) => {
@@ -47,7 +46,7 @@ const MoodSongs = ({ mood }) => {
         };
 
         fetchData();
-    }, []); // Trigger the request when the mood prop changes
+    }, []); 
 
     var settings = {
         dots: false,
