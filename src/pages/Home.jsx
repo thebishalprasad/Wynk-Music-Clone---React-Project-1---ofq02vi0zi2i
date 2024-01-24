@@ -13,11 +13,10 @@ const Home = () => {
       <Header />
       <Carousel />
       <NewRelease />
+      <MusicCard/>
       <MoodSongs />
-      <MusicCard/>
-      <MusicCard/>
-      <MusicCard/>
       <ArtistCard />
+      <MusicCard/>
     </div>
   )
 }

@@ -3,14 +3,16 @@ import { useLocation } from 'react-router-dom';
 
 const Playlists = () => {
   const location = useLocation();
-  const data  = location.state?.data || [];
+  const data = location.state?.data || [];
 
-  console.log(data);
   return (
-    <div>
-      <h1>/Playlist Page</h1>
-      {data.map((d)=> (
-        <h3 className='text-white'>{d.title}</h3>
+    <div className='h-full w-full pt-4 py-4 rounded-full'>
+      <h1 className='text-white'>Playlist Page</h1>
+      {data.map((d) => (
+        <div className='bg-red-200 h-[160px] w-[130px] rounded-[40px]'>
+          <img className='rounded-md h-full w-full' src={d.thumbnail} alt={d.title} />
+          <h4 className='text-white truncate p-2'>{d.title}</h4>
+        </div>
       ))}
     </div>
   );
