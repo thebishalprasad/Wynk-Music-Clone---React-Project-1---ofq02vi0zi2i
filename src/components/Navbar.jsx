@@ -6,6 +6,8 @@ import { FaRegUser } from "react-icons/fa6";
 import { RxDividerVertical } from "react-icons/rx";
 import { IoMenu } from "react-icons/io5";
 import { Box, Modal, Typography } from '@mui/material';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import loginImg from "../assets/images/loginImg.png"
 import asImg from "../assets/images/AppStore.png"
 import psImg from "../assets/images/PlayStore.png"
@@ -23,28 +25,51 @@ const Navbar = () => {
     const [isLogin, setIsLogin] = useState(true)
 
     const handleSubmit = async (args) => {
-        if (args === "login") {
-            const requestData = {
-                email: email,
-                password: pass,
-                appType: APP_TYPE,
-            };
-            await axios.post(LOGIN_API, requestData, {
-                headers: {
-                    projectId: PROJECT_ID,
-                },
-            }).then((res) => {
-                console.log(res.status);
-            }).catch((err) => {
-                console.log(err);
-            })
-        } else {
-            console.log("Sign Up Function");
+        const requestData = {
+            email: email,
+            password: pass,
+            appType: APP_TYPE,
+        };
+
+        try {
+            let response;
+            if (args === "login") {
+                response = await axios.post(LOGIN_API, requestData, {
+                    headers: {
+                        projectId: PROJECT_ID,
+                    },
+                });
+                toast.success('Login successful!', { autoClose: 2000 });
+            } else if (args === "signup") {
+                const signupData = {
+                    email: email,
+                    password: pass,
+                    appType: APP_TYPE,
+                    name: name,
+                };
+
+                response = await axios.post(SIGNUP_API, signupData, {
+                    headers: {
+                        projectId: PROJECT_ID,
+                    },
+                });
+                toast.success('Signup successful!', { autoClose: 2000 });
+            }
+
+            const token = response.data.token;
+
+            localStorage.setItem('token', token);
+
+            window.location.href = '/'; 
+        } catch (error) {
+            console.error("Error:", error);
+            toast.error('Error occurred. Please try again.', { autoClose: 2000 });
         }
     }
 
+
     return (
-        <>
+        <div>
             <nav className='h-[70px] w-full bg-[#1A1A1A] grid grid-cols-1 lg:grid-cols-3 gap-3'>
                 <div className='flex items-center px-[10px] lg:px-[100px] gap-2'>
                     <img src={logo} className='h-10 w-10 rounded-full' />
@@ -98,8 +123,8 @@ const Navbar = () => {
                     </div>
                 </div>
             </Modal>
-        </>
-
+            <ToastContainer />
+        </div>
     )
 }
 
