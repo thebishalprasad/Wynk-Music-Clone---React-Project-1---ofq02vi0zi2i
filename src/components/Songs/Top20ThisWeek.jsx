@@ -2,7 +2,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
-import { PROJECT_ID } from '../../constant';
+import { PROJECT_ID } from '../../utils/constant';
 
 const Top20ThisWeek = () => {
   const [data, setData] = useState([]);

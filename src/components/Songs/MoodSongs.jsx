@@ -7,7 +7,7 @@ import Excited from'../../assets/images/Excited.jpg'
 import Romantic from '../../assets/images/Romantic.jpg'
 import Dance from '../../assets/images/Dance.jpg'
 import Party from '../../assets/images/Party.jpg'
-import { PROJECT_ID } from '../../constant';
+import { PROJECT_ID } from '../../utils/constant';
 import { useNavigate } from 'react-router-dom';
 
 const MoodSongs = ({ mood }) => {

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 
 const MusicPlayer = ({ songId, projectId }) => {
@@ -31,15 +30,7 @@ const MusicPlayer = ({ songId, projectId }) => {
 
   return (
     <div>
-      <AudioPlayer
-        src={songDetails.audioSrc}
-        autoPlayAfterSrcChange={false}
-        showJumpControls={false} 
-        customAdditionalControls={[]} 
-        layout="horizontal-reverse" 
-        header={`Now Playing: ${songDetails.title} - ${songDetails.artist}`}
-        footer={`Album: ${songDetails.album}`}
-      />
+      
     </div>
   );
 };
