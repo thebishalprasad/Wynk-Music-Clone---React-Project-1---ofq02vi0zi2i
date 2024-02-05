@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { CiSearch } from "react-icons/ci";
 import { BsCurrencyRupee } from "react-icons/bs";
 import { FaRegUser } from "react-icons/fa6";
@@ -17,14 +17,22 @@ import { APP_TYPE, PROJECT_ID, LOGIN_API, SIGNUP_API } from '../utils/constant';
 import Subscription from './Subscription/Subscription';
 
 const Navbar = () => {
-    const [showLogin, setShowLogin] = useState(false); 
-    const handleShowLogin = () => setShowLogin(true); 
-    const handleClose = () => setShowLogin(false); 
+    const [showLogin, setShowLogin] = useState(false);
+    const [shownavbar, setshownavbar] = useState(true);
+    const handleShowLogin = () => setShowLogin(true);
+    const handleClose = () => setShowLogin(false);
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
     const [name, setName] = useState("");
     const [isLogin, setIsLogin] = useState(true);
     const navigate = useNavigate();
+    const location = useLocation();
+    
+    useEffect(()=>{
+        if (location.pathname === "/subscription") {
+            setshownavbar(false)
+        }
+    },[location])
 
     const handleSubmit = async (args) => {
         const requestData = {
@@ -70,9 +78,9 @@ const Navbar = () => {
     const handleSubscriptionClick = () => {
         navigate('/subscription');
     }
-    
+
     return (
-        <div>
+        <div className = {`${shownavbar ? 'block': 'hidden'}`}>
             <nav className='h-[70px] w-full bg-[#1A1A1A] grid grid-cols-1 lg:grid-cols-3 gap-3'>
                 <a href="/" className='flex items-center px-[10px] lg:px-[100px] gap-2'>
                     <img src={logo} className='h-10 w-10 rounded-full' />
@@ -132,3 +140,4 @@ const Navbar = () => {
 }
 
 export default Navbar;
+
