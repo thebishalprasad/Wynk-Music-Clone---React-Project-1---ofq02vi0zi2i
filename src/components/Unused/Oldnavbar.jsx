@@ -13,8 +13,7 @@ import loginImg from "../assets/images/loginImg.png"
 import asImg from "../assets/images/AppStore.png"
 import psImg from "../assets/images/PlayStore.png"
 import logo from '../assets/images/logo.png'
-import { APP_TYPE, PROJECT_ID, LOGIN_API, SIGNUP_API } from '../utils/constant';
-import Subscription from './Subscription/Subscription';
+import { APP_TYPE, PROJECT_ID, LOGIN_API, SIGNUP_API } from '../../utils/constant';
 
 const Navbar = () => {
     const [showLogin, setShowLogin] = useState(false);
@@ -68,6 +67,8 @@ const Navbar = () => {
 
             const token = response.data.token;
             localStorage.setItem('token', token);
+            console.log(token);
+            handleClose();
             navigate('/');
         } catch (error) {
             console.error("Error:", error);
