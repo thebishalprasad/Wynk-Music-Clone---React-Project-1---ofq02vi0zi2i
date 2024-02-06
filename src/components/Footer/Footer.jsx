@@ -4,8 +4,6 @@ import Logo from "../../assets/images/logo.png";
 import PS from "../../assets/images/ps.jpg"
 import AS from "../../assets/images/as.jpg"
 import { useLocation } from 'react-router-dom';
-
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebook,
