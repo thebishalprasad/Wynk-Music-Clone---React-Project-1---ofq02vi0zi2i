@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import logo from '../../assets/images/loginImg.png'
+import logo from '../../assets/images/logo.png';
 import { ToastContainer } from 'react-toastify';
 import { CiSearch } from "react-icons/ci";
 import { BsCurrencyRupee } from "react-icons/bs";
@@ -21,12 +21,21 @@ const Navbar = () => {
     useEffect(() => {
         if (location.pathname === '/subscription') {
             setshownavbar(false);
+        } else {
+            setshownavbar(true); // Ensure navbar is shown for other routes
         }
     }, [location]);
 
     const handleSubscriptionClick = () => {
         navigate('/subscription');
     };
+
+    // Reset state variables when component unmounts
+    useEffect(() => {
+        return () => {
+            setshownavbar(true); // Reset navbar visibility
+        };
+    }, []);
 
     return (
         <div className={`${shownavbar ? 'block' : 'hidden'}`}>
