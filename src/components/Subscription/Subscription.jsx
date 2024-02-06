@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "../../styles/Subscription.css";
+import "./Subscription.css";
 
 const Subscription = () => {
    

@@ -1,8 +1,8 @@
 import React, { useState, useEffect }from "react";
-import "../styles/Footer.css";
-import Logo from "../assets/images/logo.png";
-import PS from "../assets/images/ps.jpg"
-import AS from "../assets/images/as.jpg"
+import "./Footer.css";
+import Logo from "../../assets/images/logo.png";
+import PS from "../../assets/images/ps.jpg"
+import AS from "../../assets/images/as.jpg"
 import { useLocation } from 'react-router-dom';
 
 
