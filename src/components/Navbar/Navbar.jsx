@@ -16,13 +16,10 @@ const Navbar = () => {
     const [shownavbar, setshownavbar] = useState(true);
     const navigate = useNavigate();
     const location = useLocation();
-
     const handleShowLogin = () => setShowLogin(true);
     const handleClose = () => setShowLogin(false);
+    const ToggleDropdown = () => {setShowDropdown(!showDropdown);};
 
-    const ToggleDropdown = () => {
-        setShowDropdown(!showDropdown);
-    };
     useEffect(() => {
         if (location.pathname === '/subscription') {
             setshownavbar(false);
