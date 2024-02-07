@@ -12,8 +12,9 @@ export const UserProvider = ({ children }) => {
   };
 
   const signOutContext = () => {
-    setUserName('');
-    localStorage.removeItem('userName'); 
+    setUserName('Welcome to Wynk');
+    localStorage.removeItem('userName');
+    localStorage.removeItem('token'); 
     console.log("User signed out");
   };
 

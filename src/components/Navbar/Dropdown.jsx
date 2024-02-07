@@ -2,7 +2,11 @@ import React from 'react';
 import { useUser } from '../../utils/UserProvider';
 
 const Dropdown = () => {
-    const { userName } = useUser(); 
+    const { userName , signOutContext } = useUser(); 
+
+    const handleSignOut = () => {
+        signOutContext();
+      };
 
     return (
         <div className="relative h-full flex items-center text-white bg-[#1C1B1B]">
@@ -63,7 +67,7 @@ const Dropdown = () => {
                 </a>
                 <div>
                     <div>
-                        <div className="flex items-center gap-3 hover:opacity-60 cursor-pointer mb-5 px-4">
+                        <div className="flex items-center gap-3 hover:opacity-60 cursor-pointer mb-5 px-4" onClick={handleSignOut}>
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
                                     <g clip-path="url(#clip0_604_622)">
