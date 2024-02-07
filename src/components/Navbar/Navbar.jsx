@@ -8,9 +8,11 @@ import { FaRegUser } from "react-icons/fa6";
 import { RxDividerVertical } from "react-icons/rx";
 import { IoMenu } from "react-icons/io5";
 import LoginModal from '../Authentication/LoginSignupModal';
+import Dropdown from './Dropdown';
 
 const Navbar = () => {
     const [showLogin, setShowLogin] = useState(false);
+    const [showDropdown, setShowDropdown] = useState(false);
     const [shownavbar, setshownavbar] = useState(true);
     const navigate = useNavigate();
     const location = useLocation();
@@ -18,11 +20,14 @@ const Navbar = () => {
     const handleShowLogin = () => setShowLogin(true);
     const handleClose = () => setShowLogin(false);
 
+    const ToggleDropdown = () => {
+        setShowDropdown(!showDropdown);
+    };
     useEffect(() => {
         if (location.pathname === '/subscription') {
             setshownavbar(false);
         } else {
-            setshownavbar(true); // Ensure navbar is shown for other routes
+            setshownavbar(true);
         }
     }, [location]);
 
@@ -30,10 +35,9 @@ const Navbar = () => {
         navigate('/subscription');
     };
 
-    // Reset state variables when component unmounts
     useEffect(() => {
         return () => {
-            setshownavbar(true); // Reset navbar visibility
+            setshownavbar(true);
         };
     }, []);
 
@@ -59,10 +63,13 @@ const Navbar = () => {
                             <FaRegUser className='h-4 lg:h-5 w-4 lg:w-5' />
                             Login
                         </button>
-                        <IoMenu className='text-white ml-3 lg:ml-5 h-6 lg:h-8 w-6 lg:w-8' />
+                        <button onClick={ToggleDropdown}>
+                            <IoMenu className='text-white ml-3 lg:ml-5 h-6 lg:h-8 w-6 lg:w-8' />
+                        </button>
                     </div>
                 </div>
             </nav>
+            {showDropdown && <Dropdown />}
             <LoginModal showLogin={showLogin} handleClose={handleClose} navigate={navigate} />
             <ToastContainer />
         </div>
