@@ -1,6 +1,9 @@
 import React from 'react';
+import { useUser } from '../../utils/UserProvider';
 
 const Dropdown = () => {
+    const { userName } = useUser(); 
+
     return (
         <div className="relative h-full flex items-center text-white bg-[#1C1B1B]">
             <div className="bg-[#1C1B1B] z-30 absolute top-full mr-12 mt-2 w-64 h-fit right-0 pt-5 rounded-xl stroke-2 shadow-popover transform opacity-100 scale-100">
@@ -11,7 +14,7 @@ const Dropdown = () => {
                             <path d="M2.90625 20.2508C3.82775 18.6544 5.15328 17.3287 6.74958 16.407C8.34588 15.4853 10.1567 15 12 15C13.8433 15 15.6541 15.4853 17.2504 16.407C18.8467 17.3287 20.1722 18.6544 21.0938 20.2508" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
                         </svg>
                     </span>
-                    <span className="font-light opacity-80">Username</span>
+                    <span className="font-light opacity-80">{userName}</span>
                 </div>
                 <div className="flex gap-3 stroke-2 hover:opacity-60 cursor-pointer border-t border-[#2F3031] pt-5 px-4 relative" ></div>
                 <div className="flex items-center gap-3 hover:opacity-60 cursor-pointer mb-5 px-4">

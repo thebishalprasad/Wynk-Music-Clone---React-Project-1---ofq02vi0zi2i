@@ -9,6 +9,7 @@ import { RxDividerVertical } from "react-icons/rx";
 import { IoMenu } from "react-icons/io5";
 import LoginModal from '../Authentication/LoginSignupModal';
 import Dropdown from './Dropdown';
+import {useUser} from '../../utils/UserProvider'
 
 const Navbar = () => {
     const [showLogin, setShowLogin] = useState(false);
@@ -16,6 +17,7 @@ const Navbar = () => {
     const [shownavbar, setshownavbar] = useState(true);
     const navigate = useNavigate();
     const location = useLocation();
+    const { userName } = useUser(); 
     const handleShowLogin = () => setShowLogin(true);
     const handleClose = () => setShowLogin(false);
     const ToggleDropdown = () => {setShowDropdown(!showDropdown);};
@@ -66,7 +68,7 @@ const Navbar = () => {
                     </div>
                 </div>
             </nav>
-            {showDropdown && <Dropdown />}
+            {showDropdown && <Dropdown userName={userName}/>}
             <LoginModal showLogin={showLogin} handleClose={handleClose} navigate={navigate} />
             <ToastContainer />
         </div>
