@@ -18,7 +18,8 @@ const Navbar = () => {
     const [shownavbar, setshownavbar] = useState(true);
     const navigate = useNavigate();
     const location = useLocation();
-    const { userName, isUserLoggedIn} = useUser();
+    const { userName, isUserLoggedIn } = useUser();
+
     const handleShowLogin = () => setShowLogin(true);
     const handleClose = () => setShowLogin(false);
     const ToggleDropdown = () => setShowDropdown(!showDropdown);
@@ -32,7 +33,8 @@ const Navbar = () => {
     }, [location, isUserLoggedIn]);
 
     const handleSubscriptionClick = () => {
-        navigate('/subscription');
+        if (isUserLoggedIn) navigate('/subscription');
+        else setShowLogin(true);
     };
 
     return (
@@ -52,7 +54,7 @@ const Navbar = () => {
                             <BsCurrencyRupee className='h-4 lg:h-6 w-4 lg:w-6' />
                             Manage Subscription
                         </button>
-                        {isUserLoggedIn ? (
+                        {isUserLoggedIn === true ? (
                             <MyLibrary />
                         ) : (
                             <>

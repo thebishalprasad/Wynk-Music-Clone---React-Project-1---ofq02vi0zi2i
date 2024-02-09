@@ -3,25 +3,29 @@ import React, { createContext, useState, useContext, useEffect } from "react";
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [userName, setUserName] = useState('');
-  let isUserLoggedIn;
-  const loginSignupContext = (userName) => {
+  const [userName, setUserName] = useState(localStorage.getItem('userName'));
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(localStorage.getItem('isUserLoggedIn') === 'true');
+
+  const loginSignupContext = (userName, token) => {
     setUserName(userName);
-    localStorage.setItem('userName',userName ); 
-    let isUserLoggedIn = true;
-    console.log("User signed in:",userName );
+    setIsUserLoggedIn(true)
+    localStorage.setItem('userName', userName);
+    localStorage.setItem('isUserLoggedIn', true);
+    localStorage.setItem('token', token);
+    console.log("User signed in:", userName);
   };
 
   const signOutContext = () => {
     setUserName('Welcome to Wynk');
-    localStorage.removeItem('userName');
-    localStorage.removeItem('token'); 
-    let isUserLoggedIn = false; 
+    setIsUserLoggedIn(false)
+    localStorage.setItem('userName', 'Welcome to Wynk');
+    localStorage.setItem('isUserLoggedIn', false);
+    localStorage.setItem('token', '');
     console.log("User signed out");
   };
 
-  
-  
+
+
 
   const value = { userName, loginSignupContext, signOutContext, isUserLoggedIn };
 

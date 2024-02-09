@@ -54,12 +54,12 @@ const LoginModal = ({ showLogin, handleClose, navigate }) => {
             }
 
             const token = response.data.token;
-            localStorage.setItem('token', token);
-            localStorage.setItem('userName', name);
+            // localStorage.setItem('token', token);
+            // localStorage.setItem('userName', name);
             if (isLogin){
-                loginSignupContext(responseName)
+                loginSignupContext(responseName, token)
             }else{
-                loginSignupContext(name);
+                loginSignupContext(name, token);
             }
             handleClose();
             navigate('/');
