@@ -6,6 +6,7 @@ import Footer from '../components/Footer/Footer'
 import TrendingSongs from '../components/Songs/TrendingSongs';
 import Playlist from './Common/Playlist';
 import Subscription from './Subscription/Subscription';
+import LoginModal from './Authentication/LoginSignupModal';
 
 const App = () => {
 
@@ -17,6 +18,8 @@ const App = () => {
         <Route path="/playlist" element={<Playlist />} />
         <Route path="/trending" element={<TrendingSongs />} />
         <Route path="/subscription" element={<Subscription />} />
+        <Route path="/Signup" element={<LoginModal />} />
+
       </Routes>
       <Footer />
     </Router>

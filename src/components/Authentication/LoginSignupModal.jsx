@@ -17,6 +17,7 @@ const LoginModal = ({ showLogin, handleClose, navigate }) => {
     const { loginSignupContext } = useUser();
 
     const handleSubmit = async () => {
+        let responseName =''
         const requestData = {
             email: email,
             password: password,
@@ -32,6 +33,8 @@ const LoginModal = ({ showLogin, handleClose, navigate }) => {
                         'projectId': PROJECT_ID,
                     },
                 });
+                responseName = response.data.data.name;
+                console.log(responseName);
                 toast.success('Login successful!', { autoClose: 2000 });
             } else {
                 const signupData = {
@@ -53,7 +56,11 @@ const LoginModal = ({ showLogin, handleClose, navigate }) => {
             const token = response.data.token;
             localStorage.setItem('token', token);
             localStorage.setItem('userName', name);
-            loginSignupContext(name);
+            if (isLogin){
+                loginSignupContext(responseName)
+            }else{
+                loginSignupContext(name);
+            }
             handleClose();
             navigate('/');
         } catch (error) {

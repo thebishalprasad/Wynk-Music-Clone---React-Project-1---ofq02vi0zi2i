@@ -7,9 +7,10 @@ import { BsCurrencyRupee } from "react-icons/bs";
 import { FaRegUser } from "react-icons/fa6";
 import { RxDividerVertical } from "react-icons/rx";
 import { IoMenu } from "react-icons/io5";
-import LoginModal from '../Authentication/LoginSignupModal';
-import Dropdown from './Dropdown';
-import {useUser} from '../../utils/UserProvider'
+import LoginModal from "../Authentication/LoginSignupModal";
+import Dropdown from "./Dropdown";
+import { useUser } from "../../utils/UserProvider";
+import { MyLibrary } from "../../pages/MyLibrary";
 
 const Navbar = () => {
     const [showLogin, setShowLogin] = useState(false);
@@ -17,10 +18,10 @@ const Navbar = () => {
     const [shownavbar, setshownavbar] = useState(true);
     const navigate = useNavigate();
     const location = useLocation();
-    const { userName } = useUser(); 
+    const { userName, isUserLoggedIn} = useUser();
     const handleShowLogin = () => setShowLogin(true);
     const handleClose = () => setShowLogin(false);
-    const ToggleDropdown = () => {setShowDropdown(!showDropdown);};
+    const ToggleDropdown = () => setShowDropdown(!showDropdown);
 
     useEffect(() => {
         if (location.pathname === '/subscription') {
@@ -28,17 +29,11 @@ const Navbar = () => {
         } else {
             setshownavbar(true);
         }
-    }, [location]);
+    }, [location, isUserLoggedIn]);
 
     const handleSubscriptionClick = () => {
         navigate('/subscription');
     };
-
-    useEffect(() => {
-        return () => {
-            setshownavbar(true);
-        };
-    }, []);
 
     return (
         <div className={`${shownavbar ? 'block' : 'hidden'}`}>
@@ -57,18 +52,24 @@ const Navbar = () => {
                             <BsCurrencyRupee className='h-4 lg:h-6 w-4 lg:w-6' />
                             Manage Subscription
                         </button>
-                        <RxDividerVertical className='text-white h-7 lg:h-10 w-7 lg:w-10' />
-                        <button className='text-white flex items-center h-8 lg:h-10 gap-1' onClick={handleShowLogin}>
-                            <FaRegUser className='h-4 lg:h-5 w-4 lg:w-5' />
-                            Login
-                        </button>
+                        {isUserLoggedIn ? (
+                            <MyLibrary />
+                        ) : (
+                            <>
+                                <RxDividerVertical className='text-white h-7 lg:h-10 w-7 lg:w-10' />
+                                <button className='text-white flex items-center h-8 lg:h-10 gap-1' onClick={handleShowLogin}>
+                                    <FaRegUser className='h-4 lg:h-5 w-4 lg:w-5' />
+                                    Login
+                                </button>
+                            </>
+                        )}
                         <button onClick={ToggleDropdown}>
                             <IoMenu className='text-white ml-3 lg:ml-5 h-6 lg:h-8 w-6 lg:w-8' />
                         </button>
                     </div>
                 </div>
             </nav>
-            {showDropdown && <Dropdown userName={userName}/>}
+            {showDropdown && <Dropdown userName={userName} />}
             <LoginModal showLogin={showLogin} handleClose={handleClose} navigate={navigate} />
             <ToastContainer />
         </div>

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Slider from "react-slick";
 import { PROJECT_ID } from '../../utils/constant';
 
-const MusicCard = () => {
+const HindiTop20 = () => {
   const [data, setdata] = useState([]);
 
   useEffect(() => {
@@ -77,4 +77,4 @@ const MusicCard = () => {
   );
 };
 
-export default MusicCard;
+export default HindiTop20;

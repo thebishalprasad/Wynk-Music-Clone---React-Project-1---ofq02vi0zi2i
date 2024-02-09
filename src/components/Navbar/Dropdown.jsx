@@ -4,10 +4,6 @@ import { useUser } from '../../utils/UserProvider';
 const Dropdown = () => {
     const { userName , signOutContext } = useUser(); 
 
-    const handleSignOut = () => {
-        signOutContext();
-      };
-
     return (
         <div className="relative h-full flex items-center text-white bg-[#1C1B1B]">
             <div className="bg-[#1C1B1B] z-30 absolute top-full mr-12 mt-2 w-64 h-fit right-0 pt-5 rounded-xl stroke-2 shadow-popover transform opacity-100 scale-100">
@@ -66,24 +62,22 @@ const Dropdown = () => {
                     <span className="font-light opacity-80">Podcast</span>
                 </a>
                 <div>
-                    <div>
-                        <div className="flex items-center gap-3 hover:opacity-60 cursor-pointer mb-5 px-4" onClick={handleSignOut}>
-                            <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
-                                    <g clip-path="url(#clip0_604_622)">
-                                        <path d="M17.5999 20.7001L12.5999 21.9001C11.8999 22.1001 11.2999 21.6001 11.2999 20.9001V4.50013C11.2999 3.80013 11.8999 3.30013 12.5999 3.50013L17.5999 4.70013C18.0999 4.80013 18.3999 5.20013 18.3999 5.70013V19.7001C18.3999 20.1001 18.0999 20.6001 17.5999 20.7001Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
-                                        <path d="M9.09998 20.9001H5.59998V4.80011H9.09998" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
-                                        <path d="M13.6 14.1001C14.1523 14.1001 14.6 13.4733 14.6 12.7001C14.6 11.9269 14.1523 11.3001 13.6 11.3001C13.0477 11.3001 12.6 11.9269 12.6 12.7001C12.6 13.4733 13.0477 14.1001 13.6 14.1001Z" fill="currentColor"></path>
-                                    </g>
-                                    <defs>
-                                        <clipPath id="clip0_604_622">
-                                            <rect width="24" height="24" fill="white" transform="translate(0 0.700134)"></rect>
-                                        </clipPath>
-                                    </defs>
-                                </svg>
-                            </span>
-                            <span className="font-light opacity-80">Sign Out</span>
-                        </div>
+                    <div className="flex items-center gap-3 hover:opacity-60 cursor-pointer mb-5 px-4" onClick={signOutContext}>
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                <g clip-path="url(#clip0_604_622)">
+                                    <path d="M17.5999 20.7001L12.5999 21.9001C11.8999 22.1001 11.2999 21.6001 11.2999 20.9001V4.50013C11.2999 3.80013 11.8999 3.30013 12.5999 3.50013L17.5999 4.70013C18.0999 4.80013 18.3999 5.20013 18.3999 5.70013V19.7001C18.3999 20.1001 18.0999 20.6001 17.5999 20.7001Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M9.09998 20.9001H5.59998V4.80011H9.09998" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M13.6 14.1001C14.1523 14.1001 14.6 13.4733 14.6 12.7001C14.6 11.9269 14.1523 11.3001 13.6 11.3001C13.0477 11.3001 12.6 11.9269 12.6 12.7001C12.6 13.4733 13.0477 14.1001 13.6 14.1001Z" fill="currentColor"></path>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_604_622">
+                                        <rect width="24" height="24" fill="white" transform="translate(0 0.700134)"></rect>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </span>
+                        <span className="font-light opacity-80">Sign Out</span>
                     </div>
                 </div>
                 <a target="_blank" className="flex gap-3 stroke-2 hover:opacity-60 cursor-pointer mb-5 border-t border-[#2F3031] pt-5 px-4 relative" href="https://studio.wynk.in">
