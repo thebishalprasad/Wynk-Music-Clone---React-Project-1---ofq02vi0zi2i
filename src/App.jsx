@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import Navbar from '../components/Navbar/Navbar';
-import Home from '../pages/Home';
-import Footer from '../components/Footer/Footer'
-import TrendingSongs from '../components/Songs/TrendingSongs';
-import Playlist from './Common/Playlist';
-import Subscription from './Subscription/Subscription';
-import LoginModal from './Authentication/LoginSignupModal';
+import Navbar from './components/Navbar/Navbar';
+import Home from './pages/Home';
+import Footer from './components/Footer/Footer'
+import TrendingSongs from './components/Songs/TrendingSongs';
+import Playlist from './components/Common/Playlist';
+import Subscription from './components/Subscription/Subscription';
+import LoginModal from './components/Authentication/LoginSignupModal';
 
 const App = () => {
 
