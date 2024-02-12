@@ -1,4 +1,3 @@
-// RecentReleases.jsx
 import axios from 'axios';
 import React, { useEffect, useState, useRef } from 'react';
 import Slider from 'react-slick';
