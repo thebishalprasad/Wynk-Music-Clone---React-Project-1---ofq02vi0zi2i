@@ -1,10 +1,13 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Slider from "react-slick";
 import { PROJECT_ID } from '../../utils/constant';
+import { MusicPlayer } from '../Music/MusicPlayer';
 
 const HindiTop20 = () => {
-  const [data, setdata] = useState([]);
+  const [data, setData] = useState([]);
+  const [currentSong, setCurrentSong] = useState(null);
+  const playerRef = useRef(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -15,7 +18,7 @@ const HindiTop20 = () => {
             projectId: PROJECT_ID,
           },
         });
-        setdata(prevData => [...prevData, ...response.data.data]);
+        setData(response.data.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -23,6 +26,14 @@ const HindiTop20 = () => {
 
     fetchData();
   }, []);
+
+  const handleClickSong = (song) => {
+    setCurrentSong(song);
+    if (playerRef.current) {
+      playerRef.current.classList.remove("hidden");
+      playerRef.current.classList.add("flex");
+    }
+  };
 
   var settings = {
     dots: false,
@@ -59,21 +70,24 @@ const HindiTop20 = () => {
     ]
   };
 
-
   return (
-    <div className='mx-8 px-10 '>
-      <h2 className='text-2xl text-white pl-3'>Hindi Top 20</h2>
+    <div>
+      <div className='mx-8 px-10'>
+      <h2 className='text-2xl text-white pl-3'>Top 20 Hindi Songs</h2>
       <div className='h-full w-full pt-4 py-4'>
         <Slider {...settings}>
           {data.map((m) => (
-            <>
-              <img className='rounded-md' src={m.image}/>
+            <div key={m._id} className='bg-red-200 h-[160px] w-[130px] rounded-[40px]' onClick={() => handleClickSong(m)}>
+              <img className='rounded-md' src={m.image} alt={m.title}/>
               <h4 className='text-white truncate p-2'>{m.title}</h4>
-            </>
+            </div>
           ))}
         </Slider>
       </div>
     </div>
+      {currentSong && <MusicPlayer song={currentSong} playerRef={playerRef} />}
+    </div>
+
   );
 };
 
