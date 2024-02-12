@@ -1,29 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import { MusicPlayer } from '../Music/MusicPlayer.jsx'
+import { MusicPlayer } from '../Music/MusicPlayer.jsx';
 
 const Playlist = () => {
   const location = useLocation();
   const data = location.state?.data || [];
-  const [song, setSong] = useState({})
+  const [currentSong, setCurrentSong] = useState(null);
+  const playerRef = useRef(null); // Create a ref for the player element
 
-
+  const handleClickSong = (song) => {
+    setCurrentSong(song);
+    if (playerRef.current) {
+      playerRef.current.classList.remove("hidden");
+      playerRef.current.classList.add("flex");
+    }
+  };
 
   return (
-    <div className='h-full w-full pt-4 py-4 rounded-full'>
-      <h1 className='text-white'>Playlist Page</h1>
-      {data.map((d) => (
-        <div key={d._id} className='bg-red-200 h-[160px] w-[130px] rounded-[40px]' onClick={() => {
-          setSong(d);
-          let id = document.getElementById("player");
-          id.classList.remove("hidden")
-          id.classList.add("flex")
-          }}>
-          <img className='rounded-md h-full w-full' src={d.thumbnail} alt={d.title} />
-          <h4 className='text-white truncate p-2'>{d.title}</h4>
+    <div className='h-full w-full ml-8 mt-8 text-white'>
+      <h1 className='text-white text-xl'>Playlist Page</h1>
+      {data.map((song) => (
+        <div key={song._id} className='bg-red-200 h-[180px] w-[180px] rounded-[30px] mt-8' onClick={() => handleClickSong(song)}>
+          <img className='rounded-md h-full w-full' src={song.thumbnail} alt={song.title} />
+          <h4 className='text-white truncate p-2'>{song.title}</h4>
         </div>
       ))}
-      <MusicPlayer data={song} />
+      <MusicPlayer song={currentSong} playerRef={playerRef} />
     </div>
   );
 };
