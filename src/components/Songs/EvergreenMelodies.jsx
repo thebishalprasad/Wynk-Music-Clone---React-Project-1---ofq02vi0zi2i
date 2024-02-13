@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import { PROJECT_ID } from '../../utils/constant';
 import { useUser } from '../../utils/UserProvider';
