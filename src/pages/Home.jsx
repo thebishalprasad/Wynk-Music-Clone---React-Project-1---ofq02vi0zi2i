@@ -10,9 +10,12 @@ import SoulSoother from '../components/Songs/SoulSoother.jsx'
 import EvergreenMelodies from '../components/Songs/EvergreenMelodies.jsx'
 import Top50ThisMonth from '../components/Songs/Top50ThisMonth.jsx'
 import HindiTop20 from '../components/Songs/HindiTop20.jsx'
+import MusicPlayer from '../components/Music/MusicPlayer.jsx'
+import { useUser } from '../utils/UserProvider.jsx'
 
 
 const Home = () => {
+  const {currentSong}=useUser();
 
   return (
     <div>
@@ -27,6 +30,7 @@ const Home = () => {
       <SoulSoother />
       <EvergreenMelodies />
       <Top50ThisMonth />
+        {currentSong&&<MusicPlayer/>}
     </div>
   )
 }

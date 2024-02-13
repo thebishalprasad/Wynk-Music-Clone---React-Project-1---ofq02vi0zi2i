@@ -2,19 +2,14 @@ import axios from 'axios';
 import React, { useEffect, useState, useRef } from 'react';
 import Slider from 'react-slick';
 import { PROJECT_ID } from '../../utils/constant';
-import { MusicPlayer } from '../Music/MusicPlayer'; 
+import { useUser } from '../../utils/UserProvider';
 
 const EvergreenMelodies = () => {
   const [data, setData] = useState([]);
-  const [currentSong, setCurrentSong] = useState(null);
-  const playerRef = useRef(null); 
+  const { setCurrentSong,currentSong } = useUser();
 
   const handleClickSong = (song) => {
     setCurrentSong(song);
-    if (playerRef.current) {
-      playerRef.current.classList.remove("hidden");
-      playerRef.current.classList.add("flex");
-    }
   };
 
   useEffect(() => {
@@ -77,18 +72,15 @@ const EvergreenMelodies = () => {
     <div>
       <div className='mx-8 px-10'>
         <h2 className='text-2xl text-white pl-3'>Evergreen Melodies</h2>
-        <div className='h-full w-full pt-4 py-4 rounded-full'>
-          <Slider {...settings}>
-            {data.map((song) => (
-              <div key={song._id} className='bg-red-200 h-[160px] w-[130px] rounded-[40px]' onClick={() => handleClickSong(song)}>
-                <img className='rounded-md h-full w-full' src={song.thumbnail} alt={song.title} />
-                <h4 className='text-white truncate p-2'>{song.title}</h4>
-              </div>
-            ))}
-          </Slider>
-        </div>
+        <Slider {...settings}>
+          {data.map((song) => (
+            <div key={song._id} className='bg-red-200 h-[160px] w-[130px] rounded-[40px]' onClick={() => handleClickSong(song)}>
+              <img className='rounded-md h-full w-full' src={song.thumbnail} alt={song.title} />
+              <h4 className='text-white truncate p-2'>{song.title}</h4>
+            </div>
+          ))}
+        </Slider>
       </div>
-      {currentSong && <MusicPlayer song={currentSong} playerRef={playerRef} />}
     </div>
   );
 };

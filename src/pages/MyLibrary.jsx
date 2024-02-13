@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useUser } from "../utils/UserProvider";
 import { MusicProvider } from "../utils/MusicProvider";
-import { MusicPlayer } from "../components/Music/MusicPlayer";
+import { MusicPlayer } from "../components/Music/MusicPlayer.jsx";
 import { RxDividerVertical } from "react-icons/rx";
 import { PROJECT_ID }  from "../utils/constant"
 
@@ -62,7 +62,7 @@ export const MyLibrary = () => {
             </span>
             <div class=" text-white hidden lg:block ml-2 font-light">My Music</div>
         </span>
-      <MusicPlayer />
+      {/* <MusicPlayer /> */}
     </MusicProvider>
   );
 };

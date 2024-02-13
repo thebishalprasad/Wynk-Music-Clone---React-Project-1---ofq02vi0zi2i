@@ -19,7 +19,6 @@ const App = () => {
         <Route path="/trending" element={<TrendingSongs />} />
         <Route path="/subscription" element={<Subscription />} />
         <Route path="/Signup" element={<LoginModal />} />
-
       </Routes>
       <Footer />
     </Router>

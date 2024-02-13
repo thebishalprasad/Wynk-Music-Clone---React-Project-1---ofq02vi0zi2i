@@ -1,19 +1,15 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { MusicPlayer } from '../Music/MusicPlayer.jsx';
+import { useUser } from '../../utils/UserProvider';
 
 const Playlist = () => {
   const location = useLocation();
   const data = location.state?.data || [];
-  const [currentSong, setCurrentSong] = useState(null);
-  const playerRef = useRef(null); // Create a ref for the player element
+  const { setCurrentSong,currentSong } = useUser();
 
   const handleClickSong = (song) => {
     setCurrentSong(song);
-    if (playerRef.current) {
-      playerRef.current.classList.remove("hidden");
-      playerRef.current.classList.add("flex");
-    }
+   
   };
 
   return (
@@ -25,7 +21,6 @@ const Playlist = () => {
           <h4 className='text-white truncate p-2'>{song.title}</h4>
         </div>
       ))}
-      <MusicPlayer song={currentSong} playerRef={playerRef} />
     </div>
   );
 };

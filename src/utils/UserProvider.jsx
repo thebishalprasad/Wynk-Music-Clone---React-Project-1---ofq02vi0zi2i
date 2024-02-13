@@ -5,6 +5,7 @@ const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const [userName, setUserName] = useState(localStorage.getItem('userName'));
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(localStorage.getItem('isUserLoggedIn') === 'true');
+  const [currentSong, setCurrentSong] = useState(null);
 
   const loginSignupContext = (userName, token) => {
     setUserName(userName);
@@ -24,10 +25,7 @@ export const UserProvider = ({ children }) => {
     console.log("User signed out");
   };
 
-
-
-
-  const value = { userName, loginSignupContext, signOutContext, isUserLoggedIn };
+  const value = { userName, loginSignupContext, signOutContext, isUserLoggedIn, setCurrentSong, currentSong };
 
   return (
     <UserContext.Provider value={value}>{
