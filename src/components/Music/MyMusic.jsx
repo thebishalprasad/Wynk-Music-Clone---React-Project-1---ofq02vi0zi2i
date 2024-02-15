@@ -7,6 +7,7 @@ import { MdOutlineFileDownload } from "react-icons/md";
 import { IoIosShareAlt } from "react-icons/io";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import MusicPlayer from './MusicPlayer'; 
+import { useUser } from '../../utils/UserProvider';
 
 const MyMusic = () => {
   const [favorites, setFavorites] = useState([]);
@@ -36,9 +37,14 @@ const MyMusic = () => {
     fetchFavorites();
   }, []);
 
+  const {currentSong, setCurrentSong} = useUser();
+
+
   const handleSongClick = (song) => {
-    setSelectedSong(song); 
+    setCurrentSong(song); 
+    console.log(song)
   };
+
 
   return (
     <div className="h-full">
@@ -113,7 +119,7 @@ const MyMusic = () => {
           </div>
         </div>
       </div>
-      {selectedSong && <MusicPlayer song={selectedSong} />}
+      {currentSong && <MusicPlayer song={currentSong} />}
     </div>
   );
 };

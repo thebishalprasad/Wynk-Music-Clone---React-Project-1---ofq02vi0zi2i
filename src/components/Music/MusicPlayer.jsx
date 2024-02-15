@@ -26,12 +26,8 @@ const MusicPlayer = () => {
             ]
           }
           customAdditionalControls={[
-            <div key={currentSong._id} className="flex items-center text-white">
-              <img 
-                src={currentSong.thumbnail} 
-                alt={currentSong.title} 
-                className="h-12 w-12 rounded-md mr-4" 
-              />
+            <div key={currentSong._id} className="flex w-fit items-center text-white">
+              <img src={currentSong.thumbnail} alt={currentSong.title} className="h-12 w-12 rounded-md mr-4" />
               <div>
                 <div className="text-sm font-semibold">{currentSong.title}</div>
                 <div className="text-xs text-gray-400">
