@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import MusicPlayer from '../Music/MusicPlayer';
 import Trending from "../../assets/images/Trending.jpg"
-import { FaPlay } from "react-icons/fa";
+import { FaPlus, FaPlay, FaCheck } from "react-icons/fa";
 import { MdOutlineFileDownload } from "react-icons/md";
 import { IoIosShareAlt } from "react-icons/io";
 import { BsThreeDotsVertical } from "react-icons/bs";
@@ -13,6 +13,12 @@ import { PROJECT_ID } from '../../utils/constant';
 const TrendingNow = () => {
   const [data, setData] = useState([]);
   const { setCurrentSong, currentSong } = useUser();
+  const [songCounts, setSongCounts] = useState({});
+  const [isFollowing, setIsFollowing] = useState(false);
+
+  const handleFollowToggle = () => {
+    setIsFollowing(prevState => !prevState);
+  };
 
   const handleClickSong = (song) => {
     setCurrentSong(song);
@@ -53,8 +59,9 @@ const TrendingNow = () => {
               <button className="bg-[#E3375C] border-none rounded-full p-2 text-slate-200 w-32 flex items-center">
                 <FaPlay className="inline-flex text-base mx-2" />Play Songs
               </button>
-              <button className="border-white border rounded-full p-2 text-white w-32 flex items-center">
-                <MdOutlineFileDownload className="inline-flex text-3xl text-center" />Download
+              <button className="border-white border rounded-full p-2 text-white w-32 flex items-center" onClick={handleFollowToggle}>
+                {isFollowing ? <FaCheck className="inline-flex text-base mx-2 text-center" /> : <FaPlus className="inline-flex text-base mx-2 text-center" />}
+                {isFollowing ? 'Following' : 'Follow'}
               </button>
             </div>
 
@@ -63,7 +70,7 @@ const TrendingNow = () => {
                 <IoIosShareAlt className="text-white bg-transparent" />
               </button>
               <button className="btn-popover" type="button">
-                <BsThreeDotsVertical className="text-white text-4xl bg-transparent" />
+                <BsThreeDotsVertical className="text-white text-3xl bg-transparent" />
               </button>
             </div>
           </div>
@@ -71,6 +78,7 @@ const TrendingNow = () => {
             <div className="block">
               {data.map((song, index) => (
                 <div key={index} className="flex items-center justify-between py-2 pl-2 pr-1 rounded-lg border-transparent border w-full cursor-pointer hover:border-slate-800" onClick={() => handleClickSong(song)}>
+                  <div className='text-white mx-4'>{songCounts[song.title]} # </div>
                   <div className="group relative w-14 h-14 min-w-[3.5rem]">
                     <span className="relative block">
                       <img alt={song.title} src={song.thumbnail} className="rounded-md" />
@@ -108,6 +116,7 @@ const TrendingNow = () => {
             </div>
           </div>
         </div>
+
       </div>
       {currentSong && <MusicPlayer song={currentSong} />}
     </div>
