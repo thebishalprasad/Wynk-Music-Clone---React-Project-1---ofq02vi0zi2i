@@ -1,6 +1,6 @@
 import React from 'react'
 import Carousel from '../components/Carousel'
-import Header from '../components/Header.jsx'
+import Header from '../components/Header/Header.jsx'
 import ArtistCard from '../components/Artist/ArtistCard.jsx'
 import NewRelease from '../components/Songs/NewRelease.jsx'
 import MoodSongs from '../components/Songs/MoodSongs.jsx'

@@ -8,6 +8,7 @@ import Playlist from './components/Common/Playlist';
 import Subscription from './components/Subscription/Subscription';
 import LoginModal from './components/Authentication/LoginSignupModal';
 import MyMusic from './components/Music/MyMusic';
+import TrendingNow from './components/Header/TrendingNow';
 
 const App = () => {
   const [currentSong, setCurrentSong] = useState(null);
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/Signup" element={<LoginModal />} />
         <Route path="/subscription" element={<Subscription />} />
+        <Route path="/trending" element={<TrendingNow />} />
         <Route path="/playlist" element={<Playlist setCurrentSong={setCurrentSong} />} />
         <Route path="/mymusic" element={<ProtectedRoute component={MyMusic} />} />
       </Routes>
