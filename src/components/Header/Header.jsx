@@ -27,12 +27,10 @@ function Header() {
         <header>
             <div className='flex h-[70px] w-full  text-[#f9f9f9] gap-7 items-center' >
                 <div className={`hover:underline underline-offset-[6px] ml-24 ${activeLink === 'All' ? 'text-white' : 'text-slate-400'}`}>
-                    {/* <a title="All" onClick={() => handleLinkClick('All')}>All</a> */}
                     <Link to="/" title="All" onClick={() => handleLinkClick('All')}>All</Link>
                 </div>
 
                 <div className={`hover:underline underline-offset-[6px] ${activeLink !== 'Trending Now' ? 'text-slate-400' : 'text-white'}`}>
-                    {/* <a title="Trending Now" onClick={() => handleLinkClick('Trending Now')}>Trending Now</a> */}
                     <Link to="/trending" title="Trending Now" onClick={() => handleLinkClick('Trending Now')}>Trending Now</Link>
                 </div>
 
