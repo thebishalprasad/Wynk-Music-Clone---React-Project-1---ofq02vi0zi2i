@@ -9,6 +9,7 @@ import Subscription from './components/Subscription/Subscription';
 import LoginModal from './components/Authentication/LoginSignupModal';
 import MyMusic from './components/Music/MyMusic';
 import TrendingNow from './components/Header/TrendingNow';
+import SongCard from './components/Header/SongCard';
 
 const App = () => {
   const [currentSong, setCurrentSong] = useState(null);
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/subscription" element={<Subscription />} />
         <Route path="/trending" element={<TrendingNow />} />
         <Route path="/playlist" element={<Playlist setCurrentSong={setCurrentSong} />} />
+        <Route path="/songs/:category" element={<SongCard />} />
         <Route path="/mymusic" element={<ProtectedRoute component={MyMusic} />} />
       </Routes>
       <Footer />

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'; 
 import TrendingNow from './TrendingNow';
+import SongCard from './SongCard';
 
 function Header() {
     const [isSubMenuOpen, setSubMenuOpen] = useState(false);
     const [activeLink, setActiveLink] = useState('All');
     const [isTrendingNowClicked, setIsTrendingNowClicked] = useState(false);
     const navigate = useNavigate(); 
-
 
     const handleSubMenuToggle = () => {
         setSubMenuOpen(!isSubMenuOpen);
@@ -18,6 +18,9 @@ function Header() {
         if (link === 'Trending Now') {
             setIsTrendingNowClicked(true);
             navigate('/trending'); 
+        } else if (link === 'Old Songs' || link === 'New Songs') {
+            setIsTrendingNowClicked(false);
+            navigate(`/songs/${link}`);
         } else {
             setIsTrendingNowClicked(false);
         }
@@ -48,7 +51,7 @@ function Header() {
                             <div className="flex items-center gap-1.5">Moods &amp; Genre
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="7" viewBox="0 0 12 7" fill="none">
-                                        <path d="M11 1.25L6 6.25L1 1.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M11 1.25L6 6.25L1 1.25" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
                                     </svg>
                                 </span>
                             </div>
@@ -65,7 +68,7 @@ function Header() {
                             <div className="flex items-center gap-1.5 ">Top Albums
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="7" viewBox="0 0 12 7" fill="none">
-                                        <path d="M11 1.25L6 6.25L1 1.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M11 1.25L6 6.25L1 1.25" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
                                     </svg>
                                 </span>
                             </div>
@@ -91,7 +94,7 @@ function Header() {
                 <div className={`hover:underline underline-offset-[6px] ${activeLink !== 'Top Playlists' ? 'text-slate-400' : 'text-white'}`}>
                     <div className="flex items-center">
                         <button className="hover:underline underline-offset-[6px] ">
-                            <div className="flex items-center gap-1.5">Top Playlists<span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="7" viewBox="0 0 12 7" fill="none"><path d="M11 1.25L6 6.25L1 1.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></div>
+                            <div className="flex items-center gap-1.5">Top Playlists<span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="7" viewBox="0 0 12 7" fill="none"><path d="M11 1.25L6 6.25L1 1.25" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path></svg></span></div>
                         </button>
                     </div>
                 </div>
@@ -100,9 +103,12 @@ function Header() {
                     <a title="Podcast" className="text-base dark:text-wynk-dark-singtel_gray font-light " onClick={() => handleLinkClick('Podcast')}>Podcast</a>
                 </div>
                 {isTrendingNowClicked && <TrendingNow />}
+                {activeLink === 'Old Songs' && <SongCard category="Old Songs" />}
+                {activeLink === 'New Songs' && <SongCard category="New Songs" />}
+
             </div>
         </header>
     );
 }
 
-export default Header
+export default Header;
