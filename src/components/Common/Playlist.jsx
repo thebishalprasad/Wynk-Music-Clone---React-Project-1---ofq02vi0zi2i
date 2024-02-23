@@ -1,69 +1,46 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import { useLocation } from 'react-router-dom';
 import { useUser } from '../../utils/UserProvider';
-import MusicPlayer from '../Music/MusicPlayer'; 
+import MusicPlayer from '../Music/MusicPlayer';
 
-const Playlist = () => { 
+const Playlist = () => {
   const location = useLocation();
+  const [showheader, setshowheader] = useState(true);
   const data = location.state?.data || [];
-  const { setCurrentSong,currentSong } = useUser();
+  const { setCurrentSong, currentSong } = useUser();
 
   const handleClickSong = (song) => {
-    setCurrentSong(song); 
+    setCurrentSong(song);
   };
 
-  var settings = {
-    dots: false,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 6,
-    slidesToScroll: 4,
-    initialSlide: 0,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
+  useEffect(() => {
+    if (location.pathname === '/playlist') {
+      setshowheader(false);
+    } else {
+      setshowheader(true);
+    }
+  }, [location]);
 
   return (
-   <div>
-    <div className='h-full w-full ml-8 mt-8 text-white'>
-      <h1 className='text-white text-xl'>Playlist Page</h1>
-      <Slider {...settings}>
-        {data.map((song) => (
-          <div key={song._id} className='bg-red-200 h-[180px] w-[180px] rounded-[30px] mt-8' onClick={() => handleClickSong(song)}>
-            <img className='rounded-md h-full w-full' src={song.thumbnail} alt={song.title} />
-            <h4 className='text-white truncate p-2'>{song.title}</h4>
-          </div>
-        ))}
-      </Slider>
+    <div className="h-full">
+      <div>
+        <h1 className="text-title text-white font-medium text-3xl mx-20 my-10 lg:mt-1.5 ">Playlist</h1>
+        <div className="mx-20 mb-5">
+          {data.map((song) => (
+            <div key={song._id} className="inline-block w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 mb-6" onClick={() => handleClickSong(song)}>
+              <a title={song.title} className="rounded-xl">
+                <div className="w-full rounded-xl overflow-hidden">
+                  <img alt={song.title} src={song.thumbnail} className="w-40 h-40 rounded-xl" />
+                </div>
+                <div className="truncate font-normal text-white text-base text-left pt-2">{song.title}</div>
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+      {currentSong && <MusicPlayer />}
     </div>
-    {currentSong && <MusicPlayer />} 
-   </div>
-
   );
 };
 

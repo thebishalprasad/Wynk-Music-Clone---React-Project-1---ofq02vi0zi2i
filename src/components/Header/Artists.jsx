@@ -3,7 +3,7 @@ import axios from 'axios'; // Import axios
 import { PROJECT_ID } from '../../utils/constant';
 
 const Artists = () => {
-    const [data, setData] = useState([]);
+    const [artists, setArtists] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -13,7 +13,8 @@ const Artists = () => {
                         projectId: PROJECT_ID,
                     },
                 });
-                setData(response.data.data);
+                const artistsData = response.data.data.flatMap(album => album.artists);
+                setArtists(artistsData);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -22,24 +23,20 @@ const Artists = () => {
         fetchData();
     }, []);
 
-    console.log(data);
-
     return (
         <div className="h-full">
-            <div>
-                <h1 className="text-title text-white font-medium text-4xl mx-10 my-10 lg:mt-1.5 w-full">Top Artists</h1>
-                <div className="flex-shrink-0 mx-10 mb-5 gap-2">
-                    {data.map((song) => (
-                        <div key={song._id} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 px-3 mb-6">
-                            <a title={song.title} className="rounded-xl">
-                                <div className="w-full rounded-xl overflow-hidden">
-                                    <img alt={song.title} src={song.image} className="object-cover object-center w-full h-40" />
-                                </div>
-                                <div className="truncate font-normal text-white text-base text-left pt-2">{song.title}</div>
-                            </a>
-                        </div>
-                    ))}
-                </div>
+            <h1 className="text-title text-white font-medium text-4xl mx-10 my-10 lg:mt-1.5 w-full">Top Artists</h1>
+            <div className="flex-shrink-0 mx-10 mb-5">
+                {artists.map(artist => (
+                    <div key={artist._id} className="inline-block sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 px-3 mb-6">
+                        <a title={artist.name} className="rounded-xl">
+                            <div className="rounded-xl">
+                                <img alt={artist.name} src={artist.image} className="w-40 h-40 rounded-xl" />
+                            </div>
+                            <div className="truncate font-normal text-white text-base text-left pt-2">{artist.name}</div>
+                        </a>
+                    </div>
+                ))}
             </div>
         </div>
     );

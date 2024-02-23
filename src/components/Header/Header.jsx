@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; 
-import TrendingNow from './TrendingNow';
-import SongCard from './SongCard';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom'; 
 
 function Header() {
     const [isSubMenuOpen, setSubMenuOpen] = useState(false);
     const [activeLink, setActiveLink] = useState('All');
     const [isTrendingNowClicked, setIsTrendingNowClicked] = useState(false);
+    const [showheader, setshowheader] = useState(true);
     const navigate = useNavigate(); 
+    const location = useLocation();
 
     const handleSubMenuToggle = () => {
         setSubMenuOpen(!isSubMenuOpen);
@@ -29,8 +29,16 @@ function Header() {
         }
     };
 
+    useEffect(() => {
+        if (location.pathname === '/subscription') {
+            setshowheader(false);
+        } else {
+            setshowheader(true);
+        }
+    }, [location]);
+
     return (
-        <header>
+        <header className={`${showheader ? 'block' : 'hidden'}`}>
             <div className='flex h-[70px] w-full  text-[#f9f9f9] gap-7 items-center' >
                 <div className={`hover:underline underline-offset-[6px] ml-24 ${activeLink === 'All' ? 'text-white' : 'text-slate-400'}`}>
                     <Link to="/" title="All" onClick={() => handleLinkClick('All')}>All</Link>
