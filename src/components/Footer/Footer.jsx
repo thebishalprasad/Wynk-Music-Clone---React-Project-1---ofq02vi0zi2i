@@ -191,7 +191,7 @@ const Footer = () => {
               <span className="px-2 font-normal text-gray-500">|</span>
             </li>
             <li><a className="cursor-pointer" href="/corporate/contact">Contact Us</a>
-              <span class="px-2 font-normal text-gray-500">|</span></li>
+              <span className="px-2 font-normal text-gray-500">|</span></li>
             <li><a className="Hellotunes" href="/airtel-hellotunes">Hellotunes</a>
             </li>
           </ul>
@@ -223,12 +223,12 @@ const Footer = () => {
         </div>
 
         <div className="text-xs text-center py-4 px-4 md:flex md:items-start md:justify-between ">
-          <p class="md:w-2/3 text-center md:text-left">
+          <p className="md:w-2/3 text-center md:text-left">
             Wynk Music is the one-stop music app for the latest to the greatest songs that you love.
             Play your favourite music online for free or download mp3.
             Enjoy from over 22 Million Hindi, English, Bollywood,
             Regional, Latest, Old songs and more.</p>
-          <p class="mt-4 md:w-1/3 text-center md:text-right md:mt-0 whitespace-nowrap">
+          <p className="mt-4 md:w-1/3 text-center md:text-right md:mt-0 whitespace-nowrap">
             © 2024 All rights reserved | Airtel Digital Limited
           </p>
         </div>

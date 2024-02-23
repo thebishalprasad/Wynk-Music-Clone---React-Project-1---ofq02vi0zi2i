@@ -7,9 +7,9 @@ const SongCard = ({ category }) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        console.log('Category:', category);
         const fetchData = async () => {
             const apiUrl = category === 'Old Songs' ? OLD_SONGS_API : NEW_SONGS_API;
+            console.log('Category:', category);
             console.log('API URL:', apiUrl);
 
             try {

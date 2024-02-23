@@ -18,7 +18,10 @@ function Header() {
         if (link === 'Trending Now') {
             setIsTrendingNowClicked(true);
             navigate('/trending'); 
-        } else if (link === 'Old Songs' || link === 'New Songs') {
+        } else if(link === 'Top Artist'){
+            setIsTrendingNowClicked(false);
+            navigate(`/artist/${artistName}`); 
+        }else if (link === 'Old Songs' || link === 'New Songs') {
             setIsTrendingNowClicked(false);
             navigate(`/songs/${link}`);
         } else {
@@ -88,7 +91,7 @@ function Header() {
                 </div>
 
                 <div className={`hover:underline underline-offset-[6px] ${activeLink !== 'Top Artists' ? 'text-slate-400' : 'text-white'}`}>
-                    <a title="Top Artists" className="text-base dark:text-wynk-dark-singtel_gray font-light " onClick={() => handleLinkClick('Top Artists')}>Top Artists</a>
+                 <Link to="/artist" title="Top Artists" onClick={() => handleLinkClick('Top Artists')}>Top Artists</Link>
                 </div>
 
                 <div className={`hover:underline underline-offset-[6px] ${activeLink !== 'Top Playlists' ? 'text-slate-400' : 'text-white'}`}>
