@@ -45,6 +45,7 @@ const TrendingNow = () => {
   }, []);
 
   return (
+    <>
     <div className="h-full">
       <div className="flex ml-24 my-10">
         <img src={Trending} className="rounded-md h-52 w-52" />
@@ -120,6 +121,7 @@ const TrendingNow = () => {
       </div>
       {currentSong && <MusicPlayer song={currentSong} />}
     </div>
+    </>
   )
 }
 

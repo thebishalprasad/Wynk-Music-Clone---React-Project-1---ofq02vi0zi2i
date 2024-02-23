@@ -19,7 +19,6 @@ const Home = () => {
 
   return (
     <div>
-      <Header />
       <Carousel />
       <NewRelease />
       <TrendingSongs />

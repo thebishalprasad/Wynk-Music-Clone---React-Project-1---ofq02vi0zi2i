@@ -11,6 +11,7 @@ import MyMusic from './components/Music/MyMusic';
 import TrendingNow from './components/Header/TrendingNow';
 import SongCard from './components/Header/SongCard';
 import Artists from './components/Header/Artists';
+import Header from './components/Header/Header';
 
 const App = () => {
   const [currentSong, setCurrentSong] = useState(null);
@@ -18,6 +19,7 @@ const App = () => {
   return (
     <Router>
       <Navbar />
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Signup" element={<LoginModal />} />

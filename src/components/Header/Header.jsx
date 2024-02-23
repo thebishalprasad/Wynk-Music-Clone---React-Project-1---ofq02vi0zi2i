@@ -22,7 +22,7 @@ function Header() {
             setIsTrendingNowClicked(false);
             navigate(`/artist/${artistName}`); 
         }else if (link === 'Old Songs' || link === 'New Songs') {
-            setIsTrendingNowClicked(false);
+            setIsTrendingNowClicked(true);
             navigate(`/songs/${link}`);
         } else {
             setIsTrendingNowClicked(false);
@@ -41,11 +41,12 @@ function Header() {
                 </div>
 
                 <div className={`hover:underline underline-offset-[6px] ${activeLink !== 'Old Songs' ? 'text-slate-400' : 'text-white'}`} >
-                    <a title="Old Songs" onClick={() => handleLinkClick('Old Songs')} >Old Songs</a>
+                    <Link to="/songs/old_songs" title="Old Songs" onClick={() => handleLinkClick('Old Songs')}>Old Songs</Link>
                 </div>
 
                 <div className={`hover:underline underline-offset-[6px] ${activeLink !== 'New Songs' ? 'text-slate-400' : 'text-white'}`} >
-                    <a title="New Songs" onClick={() => handleLinkClick('New Songs')} >New Songs</a>
+                    <Link to="/songs/new_songs" title="New Songs" onClick={() => handleLinkClick('New Songs')}>New Songs</Link>
+
                 </div>
 
                 <div className={`hover:underline underline-offset-[6px] ${activeLink !== 'Moods & Genre' ? 'text-slate-400' : 'text-white'}`}>
@@ -105,10 +106,6 @@ function Header() {
                 <div className={`hover:underline underline-offset-[6px] ${activeLink !== 'Podcast' ? 'text-slate-400' : 'text-white'}`}>
                     <a title="Podcast" className="text-base dark:text-wynk-dark-singtel_gray font-light " onClick={() => handleLinkClick('Podcast')}>Podcast</a>
                 </div>
-                {isTrendingNowClicked && <TrendingNow />}
-                {activeLink === 'Old Songs' && <SongCard category="Old Songs" />}
-                {activeLink === 'New Songs' && <SongCard category="New Songs" />}
-
             </div>
         </header>
     );
