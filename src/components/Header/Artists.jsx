@@ -24,16 +24,16 @@ const Artists = () => {
     }, []);
 
     return (
-        <div className="h-full">
-            <h1 className="text-title text-white font-medium text-4xl mx-10 my-10 lg:mt-1.5 w-full">Top Artists</h1>
-            <div className="flex-shrink-0 mx-10 mb-5">
+        <div className="h-full mx-20 my-10">
+            <h1 className="text-title text-white font-medium text-4xl lg:mt-1.5">Top Artists</h1>
+            <div className="flex-shrink-0 mt-5 gap-2">
                 {artists.map(artist => (
-                    <div key={artist._id} className="inline-block sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 px-3 mb-6">
+                    <div key={artist._id} className="inline-block sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 mb-6">
                         <a title={artist.name} className="rounded-xl">
                             <div className="rounded-xl">
-                                <img alt={artist.name} src={artist.image} className="w-40 h-40 rounded-xl" />
+                                <img alt={artist.name} src={artist.image} className="w-44 h-44 rounded-xl" />
                             </div>
-                            <div className="truncate font-normal text-white text-base text-left pt-2">{artist.name}</div>
+                            <div className="truncate font-normal w-44 text-white text-base text-left pt-2">{artist.name}</div>
                         </a>
                     </div>
                 ))}
