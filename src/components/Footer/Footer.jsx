@@ -11,6 +11,7 @@ import {
   faInstagram,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
+import About from "./About";
 
 const Footer = () => {
   const [showFooter, setshowFooter] = useState(true);
@@ -24,44 +25,6 @@ const Footer = () => {
 
   return (
     <footer className={`footer bg-[#0C0F12] ${showFooter ? 'flex': 'hidden'}`}>
-      <div className="p-6 border border-solid border-gray-300 rounded-lg bg-transparent mb-10 ">
-        <div className="font-bold text-lg">
-        <h2>About Wynk Music
-        <p>
-          Wynk Music is a complete package that allows you free online music
-          streaming, set caller tunes, listen to podcasts, download MP3 music
-          offline, and much more! Since music is essentially the only thing
-          that can truly understand a person, we consistently offer our
-          audience the ideal blend of MP3 Songs by their favourite artists and
-          of versatile genres.
-        </p>
-        </h2>
-
-        <h2>Play & Download FREE MP3 Songs in all languages
-        <p>
-          One of the unique features of Wynk Music is that it offers users the
-          ability to stream music in multiple regional languages, including
-          Hindi, Punjabi, Bengali, Tamil, Telugu, and more. Also, users of the
-          app can download MP3 songs for offline listening. This online music
-          platform provides access to additional features such as offline
-          listening, high-quality audio, and exclusive content.
-        </p>
-        </h2>
-
-        <h2>Wynk Music – One Stop Destination for Offline & Online Music!
-        <p>
-          Wynk Music offers users access to a vast library of music, including
-          Indian and international tracks across various genres like
-          Bollywood, Punjabi, pop, rock, and more. We have made online music
-          streaming simple, fun, and all about you! So, what’s the wait for,
-          discover and listen to millions of songs, playlists, podcasts &
-          download MP3 songs on any device including mobile for free
-          exclusively on Wynk Music. Keep Wynking!
-        </p>
-        </h2>
-        </div>
-      </div>
-
       <div className="w-full flex py-3 mb-8 border border-none rounded-lg bg-[#21252D] md:flex md:justify-between md:items-center">
         <img src={Logo} alt="img" className="h-16 ml-8" />
         <h2 className="-ml-80">Best way to Listen to Music!
