@@ -12,6 +12,7 @@ import TrendingNow from './components/Header/TrendingNow';
 import SongCard from './components/Header/SongCard';
 import Artists from './components/Header/Artists';
 import Header from './components/Header/Header';
+import Search from './components/Navbar/Search';
 
 const App = () => {
   const [currentSong, setCurrentSong] = useState(null);
@@ -29,6 +30,7 @@ const App = () => {
         <Route path="/playlist" element={<Playlist setCurrentSong={setCurrentSong} />} />
         <Route path="/songs/:category" element={<SongCard />} />
         <Route path="/mymusic" element={<ProtectedRoute component={MyMusic} />} />
+        <Route path="/search" element={<Search />} />
       </Routes>
       <Footer />
     </Router>

@@ -30,12 +30,13 @@ function Header() {
     };
 
     useEffect(() => {
-        if (location.pathname === '/subscription') {
+        if (location.pathname === "/subscription" || location.pathname === "/search"  || location.pathname === "/mymusic" ) {
             setshowheader(false);
         } else {
             setshowheader(true);
         }
     }, [location]);
+    
 
     return (
         <header className={`${showheader ? 'block' : 'hidden'}`}>

@@ -1,30 +1,27 @@
-import React, { useState, useEffect }from "react";
+import React, { useState, useEffect } from "react";
 import "./Footer.css";
 import Logo from "../../assets/images/logo.png";
 import PS from "../../assets/images/ps.jpg"
 import AS from "../../assets/images/as.jpg"
 import { useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faFacebook,
-  faTwitter,
-  faInstagram,
-  faYoutube,
-} from "@fortawesome/free-brands-svg-icons";
-import About from "./About";
+import {faFacebook,faTwitter,faInstagram,faYoutube,} from "@fortawesome/free-brands-svg-icons";
 
 const Footer = () => {
   const [showFooter, setshowFooter] = useState(true);
   const location = useLocation();
-    
-  useEffect(()=>{
-      if (location.pathname === "/subscription") {
-        setshowFooter(false)
-      }
-  },[location])
+
+  useEffect(() => {
+    if (location.pathname === "/subscription" || location.pathname === "/search") {
+      setshowFooter(false);
+    } else {
+      setshowFooter(true);
+    }
+  }, [location]);
+
 
   return (
-    <footer className={`footer bg-[#0C0F12] ${showFooter ? 'flex': 'hidden'}`}>
+    <footer className={`footer bg-[#0C0F12] ${showFooter ? 'flex' : 'hidden'}`}>
       <div className="w-full flex py-3 mb-8 border border-none rounded-lg bg-[#21252D] md:flex md:justify-between md:items-center">
         <img src={Logo} alt="img" className="h-16 ml-8" />
         <h2 className="-ml-80">Best way to Listen to Music!

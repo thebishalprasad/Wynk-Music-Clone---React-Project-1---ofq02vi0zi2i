@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logo from '../../assets/images/logo.png';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import { CiSearch } from "react-icons/ci";
 import { BsCurrencyRupee } from "react-icons/bs";
 import { FaRegUser } from "react-icons/fa6";
@@ -10,18 +10,17 @@ import { IoMenu } from "react-icons/io5";
 import LoginModal from "../Authentication/LoginSignupModal";
 import Dropdown from "./Dropdown";
 import { useUser } from "../../utils/UserProvider";
+import { PROJECT_ID } from '../../utils/constant';
+import { debounce } from 'lodash';
 
 const Navbar = () => {
     const [showLogin, setShowLogin] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
     const [shownavbar, setshownavbar] = useState(true);
+    const { userName, isUserLoggedIn } = useUser();
+    const [searchQuery, setSearchQuery] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
-    const { userName, isUserLoggedIn } = useUser();
-
-    const handleShowLogin = () => setShowLogin(true);
-    const handleClose = () => setShowLogin(false);
-    const ToggleDropdown = () => setShowDropdown(!showDropdown);
 
     useEffect(() => {
         if (location.pathname === '/subscription') {
@@ -30,6 +29,10 @@ const Navbar = () => {
             setshownavbar(true);
         }
     }, [location, isUserLoggedIn]);
+
+    useEffect(() => {
+        setSearchQuery('');
+    }, [location]);
 
     const handleSubscriptionClick = () => {
         if (isUserLoggedIn) navigate('/subscription');
@@ -41,6 +44,33 @@ const Navbar = () => {
         else setShowLogin(true);
     };
 
+    const handleSearch = () => {
+        navigate(`/search`);
+    };
+
+    const handleKeyPress = debounce(async (event) => {
+        if (event.key === 'Enter') {
+            try {
+                const response = await fetch(`https://academics.newtonschool.co/api/v1/music/song?search={"title":"${searchQuery}"}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'projectId': PROJECT_ID
+                    }
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('Search results:', data);
+                } else {
+                    throw new Error('Failed to fetch search results');
+                }
+            } catch (error) {
+                console.error('Error fetching search results:', error);
+                toast.error('Failed to fetch search results. Please try again later.');
+            }
+        }
+    }, 300);
+
     return (
         <div className={`${shownavbar ? 'block' : 'hidden'}`}>
             <nav className='h-[70px] w-full bg-[#1A1A1A] grid grid-cols-1 lg:grid-cols-3 gap-3'>
@@ -50,8 +80,18 @@ const Navbar = () => {
                 </Link>
                 <div className='lg:flex lg:col-span-2  items-center justify-end pr-4 lg:pr-16' >
                     <div className='flex items-center border border-[#575757] shadow-inner bg-[#212121] lg:shadow-[#2A2A2A] h-8 lg:h-10 w-52 lg:w-72 rounded-full px-4 lg:px-8 gap-2 lg:gap-3'>
-                        <CiSearch className='text-slate-200 h-5 lg:h-7 w-5 lg:w-7' />
-                        <input type='text' placeholder='Search Songs' className='bg-transparent focus:outline-none text-slate-400 text-xs lg:text-sm lg:w-40' />
+                        <div className='flex gap-5' onClick={handleSearch}>
+                            <CiSearch className='text-slate-200 h-5 lg:h-7 w-5 lg:w-7 cursor-pointer' />
+                            <input
+                                type='search'
+                                id='searchInput'
+                                placeholder='Search Songs'
+                                className='bg-transparent focus:outline-none text-white font-light text-base w-full lg:text-lg lg:w-50'
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                onKeyPress={handleKeyPress}
+                            />
+                        </div>
                     </div>
                     <div className='flex items-center justify-center gap-2 lg:gap-3 ml-4'>
                         <span className="hover:opacity-60 cursor-pointer flex" onClick={handleSubscriptionClick}>
@@ -86,20 +126,20 @@ const Navbar = () => {
                         ) : (
                             <>
                                 <RxDividerVertical className='text-white h-7 lg:h-10 w-7 lg:w-10' />
-                                <button className='hover:opacity-60 cursor-pointer text-white flex items-center h-8 lg:h-10 gap-1' onClick={handleShowLogin}>
+                                <button className='hover:opacity-60 cursor-pointer text-white flex items-center h-8 lg:h-10 gap-1' onClick={() => setShowLogin(true)}>
                                     <FaRegUser className='h-4 lg:h-5 w-4 lg:w-5' />
                                     <div className="text-white hidden lg:block ml-2 font-light">Login</div>
                                 </button>
                             </>
                         )}
-                        <button onClick={ToggleDropdown}>
+                        <button onClick={() => setShowDropdown(!showDropdown)}>
                             <IoMenu className='text-white ml-3 lg:ml-5 h-6 lg:h-8 w-6 lg:w-8' />
                         </button>
                     </div>
                 </div>
             </nav>
             {showDropdown && <Dropdown userName={userName} />}
-            <LoginModal showLogin={showLogin} handleClose={handleClose} navigate={navigate} />
+            <LoginModal showLogin={showLogin} handleClose={() => setShowLogin(false)} navigate={navigate} />
             <ToastContainer />
         </div>
     );
