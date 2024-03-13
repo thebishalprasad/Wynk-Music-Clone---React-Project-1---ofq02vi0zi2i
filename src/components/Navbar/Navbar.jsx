@@ -22,6 +22,8 @@ const Navbar = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
+    const { setsearchData } = useUser();
+
     useEffect(() => {
         if (location.pathname === '/subscription') {
             setshownavbar(false);
@@ -60,6 +62,7 @@ const Navbar = () => {
                 });
                 if (response.ok) {
                     const data = await response.json();
+                    setsearchData(data.data);
                     console.log('Search results:', data);
                 } else {
                     throw new Error('Failed to fetch search results');
