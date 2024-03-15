@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import MusicPlayer from '../Music/MusicPlayer';
-import Trending from "../../assets/images/Trending.jpg"
+import TrendingImage from "../../assets/images/Trending.jpg"
 import { FaPlus, FaPlay, FaCheck } from "react-icons/fa";
 import { MdOutlineFileDownload } from "react-icons/md";
 import { IoIosShareAlt } from "react-icons/io";
@@ -9,12 +9,27 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { useUser } from '../../utils/UserProvider';
 import { PROJECT_ID } from '../../utils/constant';
 
-
 const TrendingNow = () => {
-  const [data, setData] = useState([]);
   const { setCurrentSong, currentSong } = useUser();
-  const [songCounts, setSongCounts] = useState({});
+  const [data, setData] = useState([]);
   const [isFollowing, setIsFollowing] = useState(false);
+  const [songCounts, setSongCounts] = useState({});
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('https://academics.newtonschool.co/api/v1/music/song', {
+        headers: {
+          projectId: PROJECT_ID,
+        },
+        params: {
+          featured: 'Trending songs',
+        },
+      });
+      setData(response.data.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
   const handleFollowToggle = () => {
     setIsFollowing(prevState => !prevState);
@@ -24,31 +39,21 @@ const TrendingNow = () => {
     setCurrentSong(song);
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('https://academics.newtonschool.co/api/v1/music/song', {
-          headers: {
-            projectId: PROJECT_ID,
-          },
-          params: {
-            featured: 'Trending songs',
-          },
-        });
-        setData(response.data.data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
+  const handlePlaySongs = async () => {
+    await fetchData();
+    if (data.length > 0) {
+      setCurrentSong(data[0]);
+    }
+  };
 
+  useEffect(() => {
     fetchData();
   }, []);
 
   return (
-    <>
     <div className="h-full">
       <div className="flex ml-24 my-10">
-        <img src={Trending} className="rounded-md h-52 w-52" />
+        <img src={TrendingImage} className="rounded-md h-52 w-52" alt="Trending" />
         <div className="mx-20 w-full">
           <div>
             <h1 className="text-slate-50 text-4xl">Trending in Hindi</h1>
@@ -57,7 +62,7 @@ const TrendingNow = () => {
           </div>
           <div className="mt-4 flex justify-between">
             <div className="inline-flex gap-4">
-              <button className="bg-[#E3375C] border-none rounded-full p-2 text-slate-200 w-32 flex items-center">
+              <button className="bg-[#E3375C] border-none rounded-full p-2 text-slate-200 w-32 flex items-center" onClick={handlePlaySongs}>
                 <FaPlay className="inline-flex text-base mx-2" />Play Songs
               </button>
               <button className="border-white border rounded-full p-2 text-white w-32 flex items-center" onClick={handleFollowToggle}>
@@ -117,12 +122,10 @@ const TrendingNow = () => {
             </div>
           </div>
         </div>
-
       </div>
-      {currentSong && <MusicPlayer song={currentSong} />}
+      {currentSong && <MusicPlayer />}
     </div>
-    </>
-  )
+  );
 }
 
 export default TrendingNow;

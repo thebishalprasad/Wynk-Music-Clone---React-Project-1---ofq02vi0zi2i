@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import AudioPlayer from "react-h5-audio-player";
 import 'react-h5-audio-player/lib/styles.css';
 import { useUser } from '../../utils/UserProvider';
 
 const MusicPlayer = () => {
   const { currentSong } = useUser();
+  const [autoPlay, setAutoPlay] = useState(false);
+
+  useEffect(() => {
+    // If currentSong exists, set autoPlay to true
+    if (currentSong) {
+      setAutoPlay(true);
+    }
+  }, [currentSong]);
 
   return (
     <section className="fixed bottom-0 w-full flex items-center justify-center z-50">
       {currentSong && (
         <AudioPlayer
+          autoPlay={autoPlay} // Use autoPlay state to control autoplay
           src={currentSong.audio_url}
           customProgressBarSection={
             [

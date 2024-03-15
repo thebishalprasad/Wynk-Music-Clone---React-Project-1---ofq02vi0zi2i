@@ -34,7 +34,6 @@ const LoginModal = ({ showLogin, handleClose, navigate }) => {
                     },
                 });
                 responseName = response.data.data.name;
-                console.log(responseName);
                 toast.success('Login successful!', { autoClose: 2000 });
             } else {
                 const signupData = {
@@ -54,8 +53,6 @@ const LoginModal = ({ showLogin, handleClose, navigate }) => {
             }
 
             const token = response.data.token;
-            // localStorage.setItem('token', token);
-            // localStorage.setItem('userName', name);
             if (isLogin){
                 loginSignupContext(responseName, token)
             }else{
@@ -64,8 +61,7 @@ const LoginModal = ({ showLogin, handleClose, navigate }) => {
             handleClose();
             navigate('/');
         } catch (error) {
-            console.error('Error:', error);
-            toast.error('Error occurred. Please try again.', { autoClose: 2000 });
+            toast.error('Wrong Credentials. Please try again.', { autoClose: 2000 });
         }
     };
 

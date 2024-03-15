@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logo from '../../assets/images/logo.png';
 import { ToastContainer, toast } from 'react-toastify';
@@ -21,6 +21,7 @@ const Navbar = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
+    const dropdownRef = useRef(null);
 
     const { setsearchData } = useUser();
 
@@ -35,6 +36,19 @@ const Navbar = () => {
     useEffect(() => {
         setSearchQuery('');
     }, [location]);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setShowDropdown(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
 
     const handleSubscriptionClick = () => {
         if (isUserLoggedIn) navigate('/subscription');
@@ -141,7 +155,11 @@ const Navbar = () => {
                     </div>
                 </div>
             </nav>
-            {showDropdown && <Dropdown userName={userName} />}
+            {showDropdown && (
+                <div ref={dropdownRef}>
+                    <Dropdown userName={userName} />
+                </div>
+            )}
             <LoginModal showLogin={showLogin} handleClose={() => setShowLogin(false)} navigate={navigate} />
             <ToastContainer />
         </div>
