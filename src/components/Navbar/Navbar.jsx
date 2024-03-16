@@ -77,12 +77,10 @@ const Navbar = () => {
                 if (response.ok) {
                     const data = await response.json();
                     setsearchData(data.data);
-                    console.log('Search results:', data);
                 } else {
                     throw new Error('Failed to fetch search results');
                 }
             } catch (error) {
-                console.error('Error fetching search results:', error);
                 toast.error('Failed to fetch search results. Please try again later.');
             }
         }

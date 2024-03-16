@@ -1,21 +1,16 @@
 import React, { useState } from 'react';
 import { useUser } from '../../utils/UserProvider';
+import { ToastContainer, toast } from 'react-toastify';
 import DownloadModal from './DownloadModal';
 
 const Dropdown = () => {
     const { userName, signOutContext, isUserLoggedIn } = useUser();
     const [showDownloadModal, setShowDownloadModal] = useState(false);
-    const [showDropdown, setShowDropdown] = useState(false);
 
     const handelDownload = () => {
         setShowDownloadModal(true);
-        setShowDropdown(false);
     };
 
-    const handleCloseDownloadModal = () => {
-        setShowDownloadModal(false);
-        setShowDropdown(false);
-    };
     return (
         <div className="relative h-full flex items-center text-white bg-[#1C1B1B]">
             <div className="bg-[#1C1B1B] z-30 absolute top-full mr-12 mt-2 w-64 h-fit right-0 pt-5 rounded-xl stroke-2 shadow-popover transform opacity-100 scale-100">
@@ -110,8 +105,8 @@ const Dropdown = () => {
                     </div>
                 </a >
             </div>
-            {showDownloadModal &&
-                <DownloadModal showDownload={showDownloadModal} handleClose={handleCloseDownloadModal} />}
+            <DownloadModal showDownloadModal={showDownloadModal} handleClose={() => setshowDownload(false)} />
+            <ToastContainer />
         </div >
     );
 }
