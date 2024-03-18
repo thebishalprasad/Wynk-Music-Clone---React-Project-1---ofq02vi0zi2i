@@ -7,6 +7,8 @@ import { useUser } from '../../utils/UserProvider';
 const NewRelease = () => {
   const { setCurrentSong, currentSong } = useUser();
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const handleClickSong = (song) => {
     setCurrentSong(song);
@@ -16,7 +18,6 @@ const NewRelease = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get('https://academics.newtonschool.co/api/v1/music/song', {
-          method: 'GET',
           headers: {
             projectId: PROJECT_ID,
           },
@@ -26,12 +27,17 @@ const NewRelease = () => {
         });
         setData(response.data.data);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        setError(error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchData();
   }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
 
   var settings = {
     dots: false,
@@ -70,16 +76,16 @@ const NewRelease = () => {
 
   return (
     <div className='mx-8 px-10'>
-    <h2 className='text-2xl text-white pl-3'>New Release</h2>
+      <h2 className='text-2xl text-white pl-3'>New Release</h2>
       <Slider {...settings}>
         {data.map((song) => (
-          <div key={song._id} className='h-44 w-44 rounded-[40px] border-none mt-3' onClick={() => handleClickSong(song)}>
+          <div key={song._id} className='h-44 w-44 rounded-[40px] mt-3 focus:outline-none' onClick={() => handleClickSong(song)}>
             <img className='rounded-md h-full w-full' src={song.thumbnail} alt={song.title} />
             <h4 className='text-white truncate p-2'>{song.title}</h4>
           </div>
         ))}
       </Slider>
-  </div>
+    </div>
   );
 };
 

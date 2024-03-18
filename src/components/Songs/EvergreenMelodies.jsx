@@ -6,7 +6,7 @@ import { useUser } from '../../utils/UserProvider';
 
 const EvergreenMelodies = () => {
   const [data, setData] = useState([]);
-  const { setCurrentSong,currentSong } = useUser();
+  const { setCurrentSong, currentSong } = useUser();
 
   const handleClickSong = (song) => {
     setCurrentSong(song);
@@ -16,7 +16,6 @@ const EvergreenMelodies = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get('https://academics.newtonschool.co/api/v1/music/song', {
-          method: 'GET',
           headers: {
             projectId: PROJECT_ID,
           },
@@ -74,7 +73,7 @@ const EvergreenMelodies = () => {
         <h2 className='text-2xl text-white pl-3'>Evergreen Melodies</h2>
         <Slider {...settings}>
           {data.map((song) => (
-            <div key={song._id} className='bg-red-200 h-[160px] w-[130px] rounded-[40px]' onClick={() => handleClickSong(song)}>
+            <div key={song._id} className='h-44 w-44 rounded-[40px] mt-3 focus:outline-none' onClick={() => handleClickSong(song)}>
               <img className='rounded-md h-full w-full' src={song.thumbnail} alt={song.title} />
               <h4 className='text-white truncate p-2'>{song.title}</h4>
             </div>
