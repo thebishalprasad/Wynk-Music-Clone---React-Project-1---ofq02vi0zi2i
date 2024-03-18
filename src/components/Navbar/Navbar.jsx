@@ -155,7 +155,7 @@ const Navbar = () => {
             </nav>
             {showDropdown && (
                 <div ref={dropdownRef}>
-                    <Dropdown userName={userName} />
+                    <Dropdown userName={userName}/>
                 </div>
             )}
             <LoginModal showLogin={showLogin} handleClose={() => setShowLogin(false)} navigate={navigate} />

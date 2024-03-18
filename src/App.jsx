@@ -27,7 +27,7 @@ const App = () => {
         <Route path="/subscription" element={<Subscription />} />
         <Route path="/trending" element={<TrendingNow />} />
         <Route path="/artist" element={<Artists />} />
-        <Route path="/playlist" element={<Playlist setCurrentSong={setCurrentSong} />} />
+        <Route path="/playlist/:mood" element={<Playlist setCurrentSong={setCurrentSong} />} />
         <Route path="/songs/:category" element={<SongCard />} />
         <Route path="/mymusic" element={<ProtectedRoute component={MyMusic} />} />
         <Route path="/search" element={<Search />} />

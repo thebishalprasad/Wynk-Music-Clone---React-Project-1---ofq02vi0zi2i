@@ -1,46 +1,36 @@
 import React, { useState, useEffect } from 'react';
-import Slider from 'react-slick';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { useUser } from '../../utils/UserProvider';
 import MusicPlayer from '../Music/MusicPlayer';
 
 const Playlist = () => {
   const location = useLocation();
-  const [showheader, setshowheader] = useState(true);
   const data = location.state?.data || [];
   const { setCurrentSong, currentSong } = useUser();
+  const { mood } = useParams();
 
   const handleClickSong = (song) => {
     setCurrentSong(song);
   };
 
-  useEffect(() => {
-    if (location.pathname === '/playlist') {
-      setshowheader(false);
-    } else {
-      setshowheader(true);
-    }
-  }, [location]);
-
   return (
-    <div className="h-full">
-      <div>
-        <h1 className="text-title text-white font-medium text-3xl mx-20 my-10 lg:mt-1.5 ">Playlist</h1>
-        <div className="mx-20 mb-5">
-          {data.map((song) => (
-            <div key={song._id} className="inline-block w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 mb-6" onClick={() => handleClickSong(song)}>
-              <a title={song.title} className="rounded-xl">
-                <div className="w-full rounded-xl overflow-hidden">
-                  <img alt={song.title} src={song.thumbnail} className="w-40 h-40 rounded-xl" />
-                </div>
-                <div className="truncate font-normal text-white text-base text-left pt-2">{song.title}</div>
-              </a>
-            </div>
-          ))}
-        </div>
+    <div className="h-full mt-5">
+      <h2 className="text-title text-white font-medium text-3xl mx-20 my-10 lg:mt-1.5 ">{mood.charAt(0).toUpperCase() + mood.slice(1)} Songs</h2>
+      <div className="ml-20 mb-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
+        {data.map((song) => (
+          <div key={song._id} className="mb-6" onClick={() => handleClickSong(song)}>
+            <a title={song.title} className="rounded-xl block">
+              <div className="w-full rounded-xl overflow-hidden">
+                <img alt={song.title} src={song.thumbnail} className="w-44 h-44 rounded-lg" />
+              </div>
+              <div className="truncate font-normal text-white text-base text-left pt-2 pl-2">{song.title}</div>
+            </a>
+          </div>
+        ))}
       </div>
       {currentSong && <MusicPlayer />}
     </div>
+
   );
 };
 

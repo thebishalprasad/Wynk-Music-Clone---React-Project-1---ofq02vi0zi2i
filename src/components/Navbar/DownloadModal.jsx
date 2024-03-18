@@ -6,12 +6,12 @@ import download from "../../assets/images/Download.JPG";
 import asImg from "../../assets/images/AppStore.png"
 import psImg from '../../assets/images/PlayStore.png'
 
-const DownloadModal = ({ showDownload, handleClose }) => {
+const DownloadModal = ({ showDownloadModal, handleClose }) => {
     const [email, setEmail] = useState('');
 
     const handleSubmit = () => {
         try {
-            toast.success('Link Sent successfully!', { autoClose: 2000 });
+            toast.success('Link Sent successfully!', { autoClose: 1000 });
             handleClose();
         } catch (error) {
             toast.error('Error sending link. Please try again.', { autoClose: 2000 });
@@ -20,8 +20,7 @@ const DownloadModal = ({ showDownload, handleClose }) => {
 
     return (
         <Modal
-            open={showDownload}
-            onClose={handleClose}
+            open={showDownloadModal}
             aria-labelledby="Credential Modal"
             style={{ backdropFilter: "blur(5px)" }}
         >

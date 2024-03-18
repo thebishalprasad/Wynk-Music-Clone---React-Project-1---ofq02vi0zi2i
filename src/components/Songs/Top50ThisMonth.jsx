@@ -1,8 +1,7 @@
 import axios from 'axios';
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState} from 'react';
 import Slider from 'react-slick';
 import { PROJECT_ID } from '../../utils/constant';
-import { MusicPlayer } from '../Music/MusicPlayer.jsx'; 
 import { useUser } from '../../utils/UserProvider';
 
 const Top50ThisMonth = () => {

@@ -30,7 +30,7 @@ function Header() {
     };
 
     useEffect(() => {
-        if (location.pathname === "/subscription" || location.pathname === "/search"  || location.pathname === "/mymusic" ) {
+        if (location.pathname === "/subscription" || location.pathname === "/search"  || location.pathname === "/mymusic" ||  location.pathname.includes("playlist")) {
             setshowheader(false);
         } else {
             setshowheader(true);

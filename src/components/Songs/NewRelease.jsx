@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState, useRef, useContext } from 'react';
+import React, { useEffect, useState} from 'react';
 import Slider from 'react-slick';
 import { PROJECT_ID } from '../../utils/constant';
 import { useUser } from '../../utils/UserProvider';
@@ -70,16 +70,16 @@ const NewRelease = () => {
 
   return (
     <div className='mx-8 px-10'>
-      <h2 className='text-2xl text-white pl-3'>New Releases</h2>
+    <h2 className='text-2xl text-white pl-3'>New Release</h2>
       <Slider {...settings}>
         {data.map((song) => (
-          <div key={song._id} className='bg-red-200 h-[160px] w-[130px] rounded-[40px]' onClick={() => handleClickSong(song)}>
+          <div key={song._id} className='h-44 w-44 rounded-[40px] border-none mt-3' onClick={() => handleClickSong(song)}>
             <img className='rounded-md h-full w-full' src={song.thumbnail} alt={song.title} />
             <h4 className='text-white truncate p-2'>{song.title}</h4>
           </div>
         ))}
       </Slider>
-    </div>
+  </div>
   );
 };
 
