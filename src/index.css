@@ -7,10 +7,12 @@
         margin: 0 10px;
     }
 }
+
 .rhap_container {
     background-color: #252525 !important;
-    box-shadow: none !important;
-    }
+    box-shadow: none !important;
+}
+
 input[type="range"] {
     -webkit-appearance: none;
     appearance: none;
