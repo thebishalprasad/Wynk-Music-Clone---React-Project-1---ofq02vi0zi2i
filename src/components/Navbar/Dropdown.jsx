@@ -2,17 +2,24 @@ import React, { useState } from 'react';
 import { useUser } from '../../utils/UserProvider';
 import { ToastContainer } from 'react-toastify';
 import DownloadModal from './DownloadModal';
+import Maintenance from '../Common/Maintenance'
 
 const Dropdown = () => {
     const { userName, signOutContext, isUserLoggedIn } = useUser();
     const [showDownloadModal, setShowDownloadModal] = useState(false);
     const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [showCommonSelection, setshowCommonSelection] = useState(false);
+
 
 
     const handleDownload = () => {
         setShowDownloadModal(true);
-        setDropdownOpen(false); 
+        setDropdownOpen(false);
 
+    };
+
+    const handelCommon = () => {
+        setshowCommonSelection(!showCommonSelection);
     };
 
     return (
@@ -39,7 +46,7 @@ const Dropdown = () => {
                         </span>
                         <span className="font-light opacity-80">Download App</span>
                     </div>
-                    <div className="flex items-center gap-3 hover:opacity-60 cursor-pointer mb-5 px-4">
+                    <div className="flex items-center gap-3 hover:opacity-60 cursor-pointer mb-5 px-4" onClick={handelCommon}>
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
                                 <rect x="3.14001" y="4.4823" width="9.8" height="9.8" rx="1.5" stroke="currentColor"></rect>
@@ -53,7 +60,7 @@ const Dropdown = () => {
                         </span>
                         <span className="font-light opacity-80">Select Language</span>
                     </div>
-                    <div className="flex items-center gap-3 hover:opacity-60 cursor-pointer mb-5 px-4">
+                    <div className="flex items-center gap-3 hover:opacity-60 cursor-pointer mb-5 px-4" onClick={handelCommon}>
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
                                 <path d="M5.75 10.5281H3V14.4581H5.75V10.5281Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -65,14 +72,14 @@ const Dropdown = () => {
                         </span>
                         <span className="font-light opacity-80">Sound Quality</span>
                     </div>
-                    <a className="flex items-center gap-3 stroke-2 hover:opacity-60 cursor-pointer mb-5 px-4" href="/podcasts">
+                    <div className="flex items-center gap-3 hover:opacity-60 cursor-pointer mb-5 px-4" onClick={handelCommon}>
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
                                 <path d="M11.35 20.1994V20.1222L11.2753 20.1027C10.0274 19.7762 9.1 18.652 9.1 17.3044V12.0544C9.1 10.4522 10.3977 9.15444 12 9.15444C13.6023 9.15444 14.9 10.4522 14.9 12.0544V17.3044C14.9 18.652 13.9726 19.7762 12.7247 20.1027L12.65 20.1222V20.1994V21.8044C12.65 22.1617 12.3573 22.4544 12 22.4544C11.6427 22.4544 11.35 22.1617 11.35 21.8044V20.1994ZM12 18.9044C12.8802 18.9044 13.6 18.1847 13.6 17.3044V12.0544C13.6 11.1742 12.8802 10.4544 12 10.4544C11.1198 10.4544 10.4 11.1742 10.4 12.0544V17.3044C10.4 18.1847 11.1198 18.9044 12 18.9044ZM17.25 12.7044C16.8927 12.7044 16.6 12.4117 16.6 12.0544C16.6 9.51672 14.5377 7.45444 12 7.45444C9.46227 7.45444 7.4 9.51672 7.4 12.0544C7.4 12.4117 7.10727 12.7044 6.75 12.7044C6.39273 12.7044 6.1 12.4117 6.1 12.0544C6.1 8.80217 8.74773 6.15444 12 6.15444C15.2523 6.15444 17.9 8.80217 17.9 12.0544C17.9 12.4117 17.6073 12.7044 17.25 12.7044ZM20.25 12.7044C19.8927 12.7044 19.6 12.4117 19.6 12.0544C19.6 7.86672 16.1877 4.45444 12 4.45444C7.81227 4.45444 4.4 7.86672 4.4 12.0544C4.4 12.4117 4.10727 12.7044 3.75 12.7044C3.39273 12.7044 3.1 12.4117 3.1 12.0544C3.1 7.14467 7.09023 3.15444 12 3.15444C16.9098 3.15444 20.9 7.14467 20.9 12.0544C20.9 12.4117 20.6073 12.7044 20.25 12.7044Z" fill="currentColor" stroke="#191C3D" stroke-width="0"></path>
                             </svg>
                         </span>
                         <span className="font-light opacity-80">Podcast</span>
-                    </a>
+                    </div>
                     {isUserLoggedIn ? (
                         <div>
                             <div className="flex items-center gap-3 hover:opacity-60 cursor-pointer mb-5 px-4" onClick={signOutContext}>
@@ -111,8 +118,10 @@ const Dropdown = () => {
                     </a >
                 </div>
             </div >
+            {showCommonSelection && <Maintenance />}
             <DownloadModal showDownloadModal={showDownloadModal} />
             <ToastContainer />
+
         </div>
     );
 }

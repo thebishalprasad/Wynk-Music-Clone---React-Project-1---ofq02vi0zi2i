@@ -116,7 +116,6 @@ function Header() {
                   <Link to="/podcast" title="Podcast" onClick={() => handleLinkClick('Podcast')}>Podcast</Link>
                 </div>
 
-            
             </div>
         </header>
     );
