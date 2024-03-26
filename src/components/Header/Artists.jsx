@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios'; 
-import { ImSpinner10 } from "react-icons/im";
+import axios from 'axios';
 import { PROJECT_ID } from '../../utils/constant';
 
 const Artists = () => {
     const [artists, setArtists] = useState([]);
-    const [loading, setLoading] = useState(true); // State variable to track loading state
-
+    const [loading, setLoading] = useState(true); 
+    
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -17,10 +16,10 @@ const Artists = () => {
                 });
                 const artistsData = response.data.data.flatMap(album => album.artists);
                 setArtists(artistsData);
-                setLoading(false); 
+                setLoading(false);
             } catch (error) {
                 console.error('Error fetching data:', error);
-                setLoading(false); 
+                setLoading(false);
             }
         };
 
@@ -30,9 +29,13 @@ const Artists = () => {
     return (
         <div className="h-full mx-20 my-10">
             <h1 className="text-title text-white font-medium text-4xl lg:mt-1.5">Top Artists</h1>
-            {loading ? ( 
+            {loading ? (
                 <div className="flex justify-center items-center mt-5">
-                    <ImSpinner10  className='text-red-600 text-5xl justify-center'/>
+                    <div className="p-3 animate-spin drop-shadow-xl bg-gradient-to-bl from-pink-400 via-purple-400
+                       to-indigo-600 md:w-16 md:h-16 h-16 w-16 aspect-square rounded-full">
+                        <div className="rounded-full h-full w-full bg-slate-100 dark:bg-zinc-900 background-blur-md"
+                        ></div>
+                    </div>
                 </div>
             ) : (
                 <div className="flex-shrink-0 mt-5 gap-2">

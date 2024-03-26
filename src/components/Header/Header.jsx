@@ -113,8 +113,10 @@ function Header() {
                 </div>
 
                 <div className={`hover:underline underline-offset-[6px] ${activeLink !== 'Podcast' ? 'text-slate-400' : 'text-white'}`}>
-                    <a title="Podcast" className="text-base dark:text-wynk-dark-singtel_gray font-light " onClick={() => handleLinkClick('Podcast')}>Podcast</a>
+                  <Link to="/podcast" title="Podcast" onClick={() => handleLinkClick('Podcast')}>Podcast</Link>
                 </div>
+
+            
             </div>
         </header>
     );
