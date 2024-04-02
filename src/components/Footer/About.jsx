@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 
 const About = () => {
   return (
-    <div className="pl-8 pr-20 py-8 border mx-20 mt-12 border-[#3D464D] rounded-lg bg-transparent items-start">
-      <h2 className='text-lg text-[#FFFFFF] mb-5 mr-10 font-bold'>About Wynk Music
-        <p className='text-sm text-[#C3C2C3] font-medium font-sans mt-2'>
+    <div className="pl-4 pr-4 md:pl-8 md:pr-20 py-8 border mx-4 md:mx-20 mt-12 border-[#3D464D] rounded-lg bg-transparent items-start">
+      <h2 className='text-base md:text-lg text-[#FFFFFF] mb-3 md:mb-5 font-bold'>About Wynk Music
+        <p className='text-xs md:text-sm text-[#C3C2C3] font-medium font-sans mt-2'>
           Wynk Music is a complete package that allows you free online music
           streaming, set caller tunes, listen to podcasts, download MP3 music
           offline, and much more! Since music is essentially the only thing
@@ -14,8 +14,8 @@ const About = () => {
         </p>
       </h2>
 
-      <h2 className='text-lg text-[#FFFFFF] mb-5 font-bold'>Play & Download FREE MP3 Songs in all languages
-        <p className='text-sm text-[#C3C2C3] font-medium font-sans mt-2'>
+      <h2 className='text-base md:text-lg text-[#FFFFFF] mb-3 md:mb-5 font-bold'>Play & Download FREE MP3 Songs in all languages
+        <p className='text-xs md:text-sm text-[#C3C2C3] font-medium font-sans mt-2'>
           One of the unique features of Wynk Music is that it offers users the
           ability to stream music in multiple regional languages, including
           Hindi, Punjabi, Bengali, Tamil, Telugu, and more. Also, users of the
@@ -25,8 +25,8 @@ const About = () => {
         </p>
       </h2>
 
-      <h2 className='text-lg text-[#FFFFFF] mb-5 font-bold'>Wynk Music – One Stop Destination for Offline & Online Music!
-        <p className='text-sm text-[#C3C2C3] font-medium font-sans mt-2'>
+      <h2 className='text-base md:text-lg text-[#FFFFFF] mb-3 md:mb-5 font-bold'>Wynk Music – One Stop Destination for Offline & Online Music!
+        <p className='text-xs md:text-sm text-[#C3C2C3] font-medium font-sans mt-2'>
           Wynk Music offers users access to a vast library of music, including
           Indian and international tracks across various genres like
           Bollywood, Punjabi, pop, rock, and more. We have made online music
@@ -37,7 +37,7 @@ const About = () => {
         </p>
       </h2>
     </div>
-  )
-}
+  );
+};
 
-export default About
+export default About;

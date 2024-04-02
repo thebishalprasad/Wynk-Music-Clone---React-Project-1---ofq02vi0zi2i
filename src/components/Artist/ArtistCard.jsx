@@ -1,22 +1,20 @@
-// ArtistCard.jsx
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Slider from "react-slick";
 import { PROJECT_ID } from '../../utils/constant';
 
 const ArtistCard = () => {
-  const [data, setdata] = useState([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get("https://academics.newtonschool.co/api/v1/music/album", {
-          method: 'GET',
           headers: {
             projectId: PROJECT_ID,
           },
         });
-        setdata(prevData => [...prevData, ...response.data.data]);
+        setData(response.data.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -68,7 +66,7 @@ const ArtistCard = () => {
           {data.map((album) => (
             album.artists.map((artist) => (
               <div key={artist._id}>
-                <img className='rounded-full h-full w-full' src={artist.image} alt={artist.name} />
+                <img className='rounded-full h-[160px] w-[160px]' src={artist.image} alt={artist.name} />
                 <h4 className='text-white truncate p-2'>{artist.name}</h4>
               </div>
             ))

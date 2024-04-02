@@ -3,7 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 function Header() {
     const [activeLink, setActiveLink] = useState('All');
-    const [showheader, setShowHeader] = useState(true);
+    const [showHeader, setShowHeader] = useState(true);
     const [isMoodOpen, setMoodOpen] = useState(false);
     const [isAlbumOpen, setAlbumOpen] = useState(false);
     const navigate = useNavigate();
@@ -14,11 +14,20 @@ function Header() {
         if (link === 'Trending Now') {
             navigate('/trending');
         } else if (link === 'Top Artists') {
-            navigate(`/artists`);
+            navigate('/artists');
         } else if (link === 'Old Songs' || link === 'New Songs') {
             navigate(`/songs/${link.toLowerCase().replace(' ', '_')}`);
+        } else if (link === 'Happy' || link === 'Excited' || link === 'Romantic' || link === 'Sad' || link === 'Party' || link === 'Dance') {
+            navigate(`/moodlist/${link.toLowerCase()}`);
+        } else if (link === 'Top Hindi Albums' || link === 'Top English Albums' || link === 'Top Telugu Albums' || link === 'Top Tamil Albums' || link === 'Top Bhojpuri Albums') {
+            navigate(`/albums/${link.toLowerCase().replace(' ', '_')}`);
+        } else if (link === 'Podcast') {
+            navigate('/podcast');
+        }else if (link === 'All') {
+            navigate('/');
         }
     };
+    
     
     const handleAlbumToggle = () => {
         setAlbumOpen(!isAlbumOpen);
@@ -29,25 +38,22 @@ function Header() {
     };
 
     const handleMoodSelect = (mood) => {
-        navigate(`/playlist/${mood.toLowerCase()}`);
+        navigate(`/moodlist/${mood.toLowerCase()}`);
     };
 
     useEffect(() => {
-        const hideHeader = [
+        const hideHeaderPaths = [
             "/subscription",
             "/search",
             "/mymusic",
-            "playlist"
+            "/moodlist"
         ];
-        if (hideHeader.some(path => location.pathname.includes(path))) {
-            setShowHeader(false);
-        } else {
-            setShowHeader(true);
-        }
+        const shouldShowHeader = !hideHeaderPaths.some(path => location.pathname.includes(path));
+        setShowHeader(shouldShowHeader);
     }, [location]);
 
     return (
-        <header className={`${showheader ? 'block' : 'hidden'}`}>
+        <header className={`${showHeader ? 'block' : 'hidden'}`}>
             <div className='flex h-[70px] w-full text-[#f9f9f9] gap-7 items-center'>
                 <div className={`hover:underline underline-offset-[6px] ml-24 ${activeLink === 'All' ? 'text-white' : 'text-slate-400'}`}>
                     <Link to="/" title="All" onClick={() => handleLinkClick('All')}>All</Link>
@@ -66,10 +72,7 @@ function Header() {
                 </div>
 
                 <div className={`hover:underline underline-offset-[6px] relative ${activeLink !== 'Moods & Genre' ? 'text-slate-400' : 'text-white'}`}>
-                    <div className="flex items-center"
-                        onMouseEnter={handleMoodToggle}
-                        onMouseLeave={handleMoodToggle}
-                    >
+                    <div className="flex items-center" onMouseEnter={handleMoodToggle} onMouseLeave={handleMoodToggle}>
                         <button className="hover:underline underline-offset-[6px] ">
                             <div className="flex items-center gap-1.5 ">Moods &amp; Genre
                                 <span>
@@ -95,10 +98,7 @@ function Header() {
                 </div>
 
                 <div className={`hover:underline underline-offset-[6px] relative ${activeLink !== 'Top Albums' ? 'text-slate-400' : 'text-white'}`}>
-                    <div className="flex items-center"
-                        onMouseEnter={handleAlbumToggle}
-                        onMouseLeave={handleAlbumToggle}
-                    >
+                    <div className="flex items-center" onMouseEnter={handleAlbumToggle} onMouseLeave={handleAlbumToggle}>
                         <button className="hover:underline underline-offset-[6px] ">
                             <div className="flex items-center gap-1.5 ">Top Albums
                                 <span>
@@ -124,14 +124,6 @@ function Header() {
 
                 <div className={`hover:underline underline-offset-[6px] ${activeLink !== 'Top Artists' ? 'text-slate-400' : 'text-white'}`}>
                     <Link to="/artist" title="Top Artists" onClick={() => handleLinkClick('Top Artists')}>Top Artists</Link>
-                </div>
-
-                <div className={`hover:underline underline-offset-[6px] ${activeLink !== 'Top Playlists' ? 'text-slate-400' : 'text-white'}`}>
-                    <div className="flex items-center">
-                        <button className="hover:underline underline-offset-[6px] ">
-                            <div className="flex items-center gap-1.5">Top Playlists<span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="7" viewBox="0 0 12 7" fill="none"><path d="M11 1.25L6 6.25L1 1.25" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path></svg></span></div>
-                        </button>
-                    </div>
                 </div>
 
                 <div className={`hover:underline underline-offset-[6px] ${activeLink !== 'Podcast' ? 'text-slate-400' : 'text-white'}`}>

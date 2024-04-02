@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
 import axios from 'axios';
+import React, { useState } from 'react';
 import { Modal } from '@mui/material'; 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import loginImg from "../../assets/images/loginImg.png"
-import asImg from "../../assets/images/AppStore.png"
-import psImg from '../../assets/images/PlayStore.png'
+import loginImg from "../../assets/images/loginImg.png";
+import asImg from "../../assets/images/AppStore.png";
+import psImg from '../../assets/images/PlayStore.png';
 import { APP_TYPE, PROJECT_ID, LOGIN_API, SIGNUP_API } from '../../utils/constant';
-import { useUser } from '../../utils/UserProvider'
+import { useUser } from '../../utils/UserProvider';
 
 const LoginModal = ({ showLogin, handleClose, navigate }) => {
     const [email, setEmail] = useState('');
@@ -17,33 +17,27 @@ const LoginModal = ({ showLogin, handleClose, navigate }) => {
     const { loginSignupContext } = useUser();
 
     const handleSubmit = async () => {
-        let responseName =''
-        const requestData = {
-            email: email,
-            password: password,
-            appType: APP_TYPE,
-        };
-
         try {
             let response;
             if (isLogin) {
-                response = await axios.post(LOGIN_API, requestData, {
+                response = await axios.post(LOGIN_API, {
+                    email: email,
+                    password: password,
+                    appType: APP_TYPE,
+                }, {
                     headers: {
                         'Content-Type': 'application/json',
                         'projectId': PROJECT_ID,
                     },
                 });
-                responseName = response.data.data.name;
                 toast.success('Login successful!', { autoClose: 2000 });
             } else {
-                const signupData = {
+                response = await axios.post(SIGNUP_API, {
                     email: email,
                     password: password,
                     appType: APP_TYPE,
                     name: name,
-                };
-
-                response = await axios.post(SIGNUP_API, signupData, {
+                }, {
                     headers: {
                         'Content-Type': 'application/json',
                         'projectId': PROJECT_ID,
@@ -53,11 +47,9 @@ const LoginModal = ({ showLogin, handleClose, navigate }) => {
             }
 
             const token = response.data.token;
-            if (isLogin){
-                loginSignupContext(responseName, token)
-            }else{
-                loginSignupContext(name, token);
-            }
+            const responseData = response.data.data;
+            const userName = isLogin ? responseData.name : name;
+            loginSignupContext(userName, token);
             handleClose();
             navigate('/');
         } catch (error) {

@@ -6,25 +6,19 @@ import { FaPlay } from "react-icons/fa";
 import { MdOutlineFileDownload } from "react-icons/md";
 import { IoIosShareAlt } from "react-icons/io";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { ToastContainer, toast } from 'react-toastify';
 import MusicPlayer from './MusicPlayer';
 import { useUser } from '../../utils/UserProvider';
 import { useLocation } from 'react-router-dom';
 
 const MyMusic = () => {
   const [favorites, setFavorites] = useState([]);
-  const [selectedSong, setSelectedSong] = useState(null);
-  const [showheader, setshowheader] = useState(true);
-
+  const [showHeader, setShowHeader] = useState(true); // Fixed variable name
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === '/mymusic') {
-      setshowheader(false);
-    } else {
-      setshowheader(true);
-    }
+    setShowHeader(location.pathname !== '/mymusic'); // Fixed condition
   }, [location]);
-
 
   useEffect(() => {
     const fetchFavorites = async () => {
@@ -37,7 +31,6 @@ const MyMusic = () => {
               'projectId': PROJECT_ID,
             }
           });
-          console.log('Response data:', response.data);
           setFavorites(response.data.data.songs);
         } else {
           console.error('Token not found in local storage');
@@ -54,7 +47,11 @@ const MyMusic = () => {
 
   const handleSongClick = (song) => {
     setCurrentSong(song);
-    console.log(song)
+    console.log(song);
+  };
+
+  const handlePlaySongs = () => {
+    toast.info('Feature under development');
   };
 
 
@@ -74,18 +71,18 @@ const MyMusic = () => {
               </div>
               <div className="mt-4 flex justify-between">
                 <div className="inline-flex gap-4">
-                  <button className="bg-[#E3375C] border-none rounded-full p-2 text-slate-200 w-32 flex items-center">
+                  <button className="bg-[#E3375C] border-none rounded-full p-2 text-slate-200 w-32 flex items-center" onClick={handlePlaySongs}>
                     <FaPlay className="inline-flex text-base mx-2" />Play Songs
                   </button>
-                  <button className="border-white border rounded-full p-2 text-white w-32 flex items-center">
+                  <button className="border-white border rounded-full p-2 text-white w-32 flex items-center" onClick={handlePlaySongs}>
                     <MdOutlineFileDownload className="inline-flex text-3xl text-center" />Download
                   </button>
                 </div>
                 <div className="inline-flex ml-10 gap-4 justify-end">
-                  <button className="btn-popover text-2xl" type="button">
+                  <button className="btn-popover text-2xl" type="button" onClick={handlePlaySongs}>
                     <IoIosShareAlt className="text-white bg-transparent" />
                   </button>
-                  <button className="btn-popover" type="button">
+                  <button className="btn-popover" type="button" onClick={handlePlaySongs}>
                     <PiDotsThreeCircleVerticalLight className="text-white text-4xl bg-transparent" />
                   </button>
                 </div>
@@ -117,10 +114,10 @@ const MyMusic = () => {
                         </div>
                       </div>
                       <div className="flex items-center  text-xl gap-4 cursor-pointer text-white">
-                        <button>
+                        <button onClick={handlePlaySongs}>
                           <MdOutlineFileDownload />
                         </button>
-                        <button>
+                        <button onClick={handlePlaySongs}>
                           <BsThreeDotsVertical />
                         </button>
                       </div>

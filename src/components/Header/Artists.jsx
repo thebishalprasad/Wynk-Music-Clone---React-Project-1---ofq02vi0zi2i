@@ -4,8 +4,9 @@ import { PROJECT_ID } from '../../utils/constant';
 
 const Artists = () => {
     const [artists, setArtists] = useState([]);
-    const [loading, setLoading] = useState(true); 
-    
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null); // Add error state
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -19,6 +20,7 @@ const Artists = () => {
                 setLoading(false);
             } catch (error) {
                 console.error('Error fetching data:', error);
+                setError(error.message); // Set error state
                 setLoading(false);
             }
         };
@@ -31,12 +33,12 @@ const Artists = () => {
             <h1 className="text-title text-white font-medium text-4xl lg:mt-1.5">Top Artists</h1>
             {loading ? (
                 <div className="flex justify-center items-center mt-5">
-                    <div className="p-3 animate-spin drop-shadow-xl bg-gradient-to-bl from-pink-400 via-purple-400
-                       to-indigo-600 md:w-16 md:h-16 h-16 w-16 aspect-square rounded-full">
-                        <div className="rounded-full h-full w-full bg-slate-100 dark:bg-zinc-900 background-blur-md"
-                        ></div>
-                    </div>
+                    <div className="p-3 animate-spin rounded-full border-t-2 border-b-2 border-purple-500 h-16 w-16"></div>
                 </div>
+            ) : error ? (
+                <div className="text-red-500">{error}</div>
+            ) : artists.length === 0 ? (
+                <div>No artists found.</div>
             ) : (
                 <div className="flex-shrink-0 mt-5 gap-2">
                     {artists.map(artist => (
