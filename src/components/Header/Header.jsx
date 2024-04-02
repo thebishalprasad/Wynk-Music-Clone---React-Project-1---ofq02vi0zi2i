@@ -109,7 +109,7 @@ function Header() {
                             </div>
                         </button>
                         {isAlbumOpen && (
-                            <div className="absolute top-full w-48 h-auto mt-2 p-4 pt-4 rounded-xl border-none border-[#575757] shadow-inner bg-[#212121] shadow-[#2A2A2A] z-10 left-1/2 transform -translate-x-1/2">
+                            <div className="absolute top-full w-48 h-auto mt-2 p-4 rounded-xl border-none border-[#575757] shadow-inner bg-[#212121] shadow-[#2A2A2A] z-10 left-1/2 transform -translate-x-1/2">
                                 <div className='bg-transparent items-center justify-center'>
                                     <Link to="/albums/hindi" className={`py-2 block ${activeLink === 'Top Hindi Albums' ? 'text-white' : 'text-slate-300'}`}>Top Hindi Albums</Link>
                                     <Link to="/albums/english" className={`py-2 block ${activeLink === 'Top English Albums' ? 'text-white' : 'text-slate-300'}`}>Top English Albums</Link>

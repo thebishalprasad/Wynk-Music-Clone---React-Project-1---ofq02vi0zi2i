@@ -3,7 +3,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { useUser } from '../../utils/UserProvider';
 import MusicPlayer from '../Music/MusicPlayer';
 
-const Playlist = () => {
+const Moodlist = () => {
   const location = useLocation();
   const data = location.state?.data || [];
   const { setCurrentSong, currentSong } = useUser();
@@ -34,4 +34,4 @@ const Playlist = () => {
   );
 };
 
-export default Playlist;
+export default Moodlist;
