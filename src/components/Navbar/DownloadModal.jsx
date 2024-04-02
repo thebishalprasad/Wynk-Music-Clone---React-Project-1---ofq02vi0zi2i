@@ -14,7 +14,7 @@ const DownloadModal = ({ showDownloadModal, handleClose }) => {
             toast.success('Link Sent successfully!', { autoClose: 1000 });
             handleClose();
         } catch (error) {
-            toast.error('Error sending link. Please try again.', { autoClose: 2000 });
+            toast.error('Error sending link. Please try again.', { autoClose: 1000 });
         }
     };
 
