@@ -4,8 +4,9 @@ import { ToastContainer } from 'react-toastify';
 import { BsTranslate } from "react-icons/bs";
 import { PiSpeakerHighBold } from "react-icons/pi";
 import { MdOutlineDownloadForOffline } from "react-icons/md";
-import { FaPodcast } from "react-icons/fa6";
+import { FaPodcast, FaRegUser } from "react-icons/fa6";
 import { FaSignOutAlt } from "react-icons/fa";
+
 import DownloadModal from './DownloadModal';
 import Maintenance from '../Common/Maintenance'
 
@@ -30,12 +31,7 @@ const Dropdown = () => {
             <div className="relative h-full flex items-center text-white bg-[#1C1B1B]">
                 <div className="bg-[#1C1B1B] z-30 absolute top-full mr-12 mt-2 w-64 h-fit right-0 pt-5 rounded-xl stroke-2 shadow-popover transform opacity-100 scale-100">
                     <div className="flex items-center gap-3 hover:opacity-60 mb-5 px-4">
-                        <span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <path d="M12 15C15.3137 15 18 12.3137 18 9C18 5.68629 15.3137 3 12 3C8.68629 3 6 5.68629 6 9C6 12.3137 8.68629 15 12 15Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
-                                <path d="M2.90625 20.2508C3.82775 18.6544 5.15328 17.3287 6.74958 16.407C8.34588 15.4853 10.1567 15 12 15C13.8433 15 15.6541 15.4853 17.2504 16.407C18.8467 17.3287 20.1722 18.6544 21.0938 20.2508" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
-                            </svg>
-                        </span>
+                        <FaRegUser className = "h-5 w-5"/>
                         <span className="font-light opacity-80">{userName}</span>
                     </div>
                     <div className="flex gap-3 stroke-2 hover:opacity-60 cursor-pointer border-t border-[#2F3031] pt-5 px-4 relative" ></div>
@@ -83,7 +79,6 @@ const Dropdown = () => {
             {showCommonSelection && <Maintenance />}
             <DownloadModal showDownloadModal={showDownloadModal} />
             <ToastContainer />
-
         </div>
     );
 }
