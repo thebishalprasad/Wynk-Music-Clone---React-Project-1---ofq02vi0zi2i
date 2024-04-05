@@ -1,26 +1,35 @@
 import React, { useState } from 'react';
 import { useUser } from '../../utils/UserProvider';
+import { useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { BsTranslate } from "react-icons/bs";
 import { PiSpeakerHighBold } from "react-icons/pi";
 import { MdOutlineDownloadForOffline } from "react-icons/md";
 import { FaPodcast, FaRegUser, FaSignOutAlt } from "react-icons/fa";
 import DownloadModal from './DownloadModal';
-import Maintenance from '../Common/Maintenance';
 
 const Dropdown = () => {
     const { userName, signOutContext, isUserLoggedIn } = useUser();
-    const [showDownloadModal, setShowDownloadModal] = useState(false);
-    const [showCommonSelection, setShowCommonSelection] = useState(false);
     const [showDropdown, setShowDropdown] = useState(true);
+    const [showDownloadModal, setShowDownloadModal] = useState(false);
+    const navigate = useNavigate();
 
     const handleDownload = () => {
         setShowDownloadModal(true);
         setShowDropdown(false);
     };
 
-    const toggleCommonSelection = () => {
-        setShowCommonSelection(prevState => !prevState);
+    const handelSelectlanguage = () => {
+        navigate(`/selectlanguage`);
+        setShowDropdown(false);
+    };
+    const handelSelectSound = () => {
+        navigate(`/selectsound`);
+        setShowDropdown(false);
+    };
+    const handelSelectPodcast = () => {
+        navigate(`/podcast`);
+        setShowDropdown(false);
     };
 
     return (
@@ -37,15 +46,15 @@ const Dropdown = () => {
                             <MdOutlineDownloadForOffline className="h-6 w-6" />
                             <span className="font-light opacity-80">Download App</span>
                         </div>
-                        <div className="flex items-center gap-3 hover:opacity-60 cursor-pointer mb-5 px-4" onClick={toggleCommonSelection}>
+                        <div className="flex items-center gap-3 hover:opacity-60 cursor-pointer mb-5 px-4" onClick={handelSelectlanguage}>
                             <BsTranslate className="h-5 w-5" />
                             <span className="font-light opacity-80">Select Language</span>
                         </div>
-                        <div className="flex items-center gap-3 hover:opacity-60 cursor-pointer mb-5 px-4" onClick={toggleCommonSelection}>
+                        <div className="flex items-center gap-3 hover:opacity-60 cursor-pointer mb-5 px-4" onClick={handelSelectSound}>
                             <PiSpeakerHighBold className="h-5 w-5" />
                             <span className="font-light opacity-80">Sound Quality</span>
                         </div>
-                        <div className="flex items-center gap-3 hover:opacity-60 cursor-pointer mb-5 px-4" onClick={toggleCommonSelection}>
+                        <div className="flex items-center gap-3 hover:opacity-60 cursor-pointer mb-5 px-4" onClick={handelSelectPodcast}>
                             <FaPodcast className="h-5 w-5" />
                             <span className="font-light opacity-80">Podcast</span>
                         </div>
@@ -74,7 +83,6 @@ const Dropdown = () => {
                 </div>
             )}
             <DownloadModal showDownloadModal={showDownloadModal} />
-            {showCommonSelection && <Maintenance />}
             <ToastContainer />
         </div>
     );

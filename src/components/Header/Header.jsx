@@ -46,7 +46,10 @@ function Header() {
             "/subscription",
             "/search",
             "/mymusic",
-            "/moodlist"
+            "/moodlist",
+            "/selectsound",
+            "/selectlanguage",
+            "/podcast"
         ];
         const shouldShowHeader = !hideHeaderPaths.some(path => location.pathname.includes(path));
         setShowHeader(shouldShowHeader);

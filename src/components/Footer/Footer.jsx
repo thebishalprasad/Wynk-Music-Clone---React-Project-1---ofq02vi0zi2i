@@ -12,7 +12,12 @@ const Footer = () => {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === "/subscription" || location.pathname === "/search") {
+    if (location.pathname === "/subscription" || 
+        location.pathname === "/search" || 
+        location.pathname === "/maintenance" ||
+        location.pathname === "/selectsound" || 
+        location.pathname === "/podcast"  ||
+        location.pathname === "/selectlanguage" ) {
       setshowFooter(false);
     } else {
       setshowFooter(true);

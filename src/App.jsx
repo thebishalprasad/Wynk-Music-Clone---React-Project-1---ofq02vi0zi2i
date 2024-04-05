@@ -14,6 +14,7 @@ import Header from './components/Header/Header';
 import Search from './components/Navbar/Search';
 import Maintenance from './components/Common/Maintenance';
 import Moodlist from './components/Common/Moodlist';
+import DownloadModal from './components/Navbar/DownloadModal'
 
 const App = () => {
   const [currentSong, setCurrentSong] = useState(null);
@@ -32,8 +33,9 @@ const App = () => {
         <Route path="/songs/:category" element={<SongCard />} />
         <Route path="/mymusic" element={<ProtectedRoute component={MyMusic} />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/selectlanguage" element={<Maintenance />} />  
+        <Route path="/selectsound" element={<Maintenance />} />        
         <Route path="/podcast" element={<Maintenance />} />
-
       </Routes>
       <Footer />
     </Router>
