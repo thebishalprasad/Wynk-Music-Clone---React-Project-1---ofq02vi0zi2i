@@ -5,19 +5,19 @@ import PS from "../../assets/images/ps.jpg"
 import AS from "../../assets/images/as.jpg"
 import { useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faFacebook,faTwitter,faInstagram,faYoutube,} from "@fortawesome/free-brands-svg-icons";
+import { faFacebook, faTwitter, faInstagram, faYoutube, } from "@fortawesome/free-brands-svg-icons";
 
 const Footer = () => {
   const [showFooter, setshowFooter] = useState(true);
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === "/subscription" || 
-        location.pathname === "/search" || 
-        location.pathname === "/maintenance" ||
-        location.pathname === "/selectsound" || 
-        location.pathname === "/podcast"  ||
-        location.pathname === "/selectlanguage" ) {
+    if (location.pathname === "/subscription" ||
+      location.pathname === "/search" ||
+      location.pathname === "/maintenance" ||
+      location.pathname === "/selectsound" ||
+      location.pathname === "/podcast" ||
+      location.pathname === "/selectlanguage") {
       setshowFooter(false);
     } else {
       setshowFooter(true);
