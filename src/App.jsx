@@ -15,6 +15,7 @@ import Search from './components/Navbar/Search';
 import Maintenance from './components/Common/Maintenance';
 import Moodlist from './components/Common/Moodlist';
 import NotFound from './components/Common/NotFound';
+import TopHindiAlbums from './components/Albums/TopHindiAlbums'; 
 
 const App = () => {
   const [currentSong, setCurrentSong] = useState(null);
@@ -29,6 +30,7 @@ const App = () => {
         <Route path="/subscription" element={<Subscription />} />
         <Route path="/trending" element={<TrendingNow />} />
         <Route path="/artist" element={<Artists />} />
+        <Route path="/albums/hindi" element={<TopHindiAlbums />} />
         <Route path="/moodlist/:mood" element={<Moodlist setCurrentSong={setCurrentSong} />} />
         <Route path="/songs/:category" element={<SongCard />} />
         <Route path="/mymusic" element={<ProtectedRoute component={MyMusic} />} />
