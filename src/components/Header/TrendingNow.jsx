@@ -4,8 +4,7 @@ import MusicPlayer from '../Music/MusicPlayer';
 import TrendingImage from "../../assets/images/Trending.jpg"
 import { FaPlus, FaPlay, FaCheck } from "react-icons/fa";
 import { MdOutlineFileDownload } from "react-icons/md";
-import { IoIosShareAlt } from "react-icons/io";
-import { BsThreeDotsVertical } from "react-icons/bs";
+import { BsCircle, BsDot, BsThreeDotsVertical } from "react-icons/bs";
 import { useUser } from '../../utils/UserProvider';
 import { PROJECT_ID } from '../../utils/constant';
 
@@ -52,13 +51,21 @@ const TrendingNow = () => {
 
   return (
     <div className="h-full">
+      <div className="flex items-center text-gray-300 text-xs ml-24 my-2">
+        <a href="/" className="text-[#394144] transition duration-200">Home</a>
+        <span><BsDot/></span>
+        <span>Trending in Hindi</span>
+      </div>
       <div className="flex ml-24 my-10">
         <img src={TrendingImage} className="rounded-md h-52 w-52" alt="Trending" />
         <div className="mx-20 w-full">
           <div>
             <h1 className="text-slate-50 text-4xl">Trending in Hindi</h1>
-            <div className="text-sm text-slate-400 leading-6 font-medium">4M Follower</div>
-            <div className="text-xs text-slate-400 leading-6">20 Songs</div>
+            <div className='flex items-center text-slate-400 my-3 text-xs'>
+              <span>4.5 L Follower</span>
+              <span><BsDot/></span>
+              <span>20 Songs</span>
+            </div>
           </div>
           <div className="mt-4 flex justify-between">
             <div className="inline-flex gap-4">
@@ -71,15 +78,18 @@ const TrendingNow = () => {
               </button>
             </div>
 
-            <div className="inline-flex ml-10 gap-4 justify-end">
-              <button className="btn-popover text-2xl" type="button">
-                <IoIosShareAlt className="text-white bg-transparent" />
+            <div className="inline-flex ml-10 gap-14 justify-end">
+              <button className="btn-popover relative" type="button">
+                <BsCircle className="text-white text-4xl bg-transparent absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" style={{ zIndex: 2 }} />
+                <MdOutlineFileDownload className="text-white text-2xl bg-transparent absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" style={{ zIndex: 3 }} />
               </button>
-              <button className="btn-popover" type="button">
-                <BsThreeDotsVertical className="text-white text-3xl bg-transparent" />
+              <button className="btn-popover relative" type="button">
+                <BsCircle className="text-white text-4xl bg-transparent absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" style={{ zIndex: 2 }} />
+                <BsThreeDotsVertical className="text-white text-xl bg-transparent absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" style={{ zIndex: 3 }} />
               </button>
             </div>
           </div>
+
           <div className="mt-6">
             <div className="block">
               {data.map((song, index) => (
