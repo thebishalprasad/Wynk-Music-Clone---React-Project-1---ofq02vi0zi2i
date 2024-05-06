@@ -3,6 +3,8 @@ import axios from 'axios';
 import { PROJECT_ID } from '../../utils/constant';
 import { useUser } from '../../utils/UserProvider';
 import MusicPlayer from '../Music/MusicPlayer';
+import { BsDot } from "react-icons/bs";
+
 
 const TopHindiAlbums = () => {
     const [data, setData] = useState([]);
@@ -31,8 +33,13 @@ const TopHindiAlbums = () => {
 
     return (
         <div className="h-full">
-            <div className='mx-20 my-1'>
-                <h1 className="text-title text-white font-medium text-4xl lg:mt-1.5">Top Hindi Albums</h1>
+            <div className='mx-24 my-1'>
+                <div className="flex items-center text-gray-300 text-xs mb-5">
+                    <a href="/" className="text-[#394144] transition duration-200">Home</a>
+                    <span><BsDot className='text-xs' /></span>
+                    <span>Top Hindi Albums</span>
+                </div>
+                <h1 className="text-title text-white font-medium text-4xl lg:mt-2">Top Hindi Albums</h1>
                 <div className="flex-shrink-0 mt-5 gap-2">
                     {data.map((song) => (
                         <div key={song._id} className="inline-block sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 my-5" onClick={() => handleClickSong(song)}>
