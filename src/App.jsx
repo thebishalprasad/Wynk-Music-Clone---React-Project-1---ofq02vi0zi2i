@@ -16,6 +16,11 @@ import Maintenance from './components/Common/Maintenance';
 import Moodlist from './components/Common/Moodlist';
 import NotFound from './components/Common/NotFound';
 import TopHindiAlbums from './components/Albums/TopHindiAlbums'; 
+import TopBhojpuriAlbums from './components/Albums/TopBhojpuriAlbums';
+import TopTamilAlbums from './components/Albums/TopTamilAlbums';
+import TopEnglishAlbums from './components/Albums/TopEnglishAlbums';
+import TopTeluguAlbums from './components/Albums/TopTeluguAlbums';
+
 
 const App = () => {
   const [currentSong, setCurrentSong] = useState(null);
@@ -31,6 +36,10 @@ const App = () => {
         <Route path="/trending" element={<TrendingNow />} />
         <Route path="/artist" element={<Artists />} />
         <Route path="/albums/hindi" element={<TopHindiAlbums />} />
+        <Route path="/albums/english" element={<TopEnglishAlbums />} />
+        <Route path="/albums/telugu" element={<TopTeluguAlbums />} />
+        <Route path="/albums/tamil" element={<TopTamilAlbums/>} />
+        <Route path="/albums/bhojpuri" element={<TopBhojpuriAlbums />} />
         <Route path="/moodlist/:mood" element={<Moodlist setCurrentSong={setCurrentSong} />} />
         <Route path="/songs/:category" element={<SongCard />} />
         <Route path="/mymusic" element={<ProtectedRoute component={MyMusic} />} />
