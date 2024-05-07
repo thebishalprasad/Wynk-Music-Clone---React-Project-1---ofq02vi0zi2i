@@ -7,6 +7,8 @@ import { MdOutlineFileDownload } from "react-icons/md";
 import { BsCircle, BsDot, BsThreeDotsVertical } from "react-icons/bs";
 import { useUser } from '../../utils/UserProvider';
 import { PROJECT_ID } from '../../utils/constant';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const TrendingNow = () => {
   const { setCurrentSong, currentSong } = useUser();
@@ -45,6 +47,10 @@ const TrendingNow = () => {
     }
   };
 
+  const handleNotifyClick = () => {
+    toast.info('Feature under development');
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -79,11 +85,11 @@ const TrendingNow = () => {
             </div>
 
             <div className="inline-flex ml-10 gap-14 justify-end">
-              <button className="btn-popover relative" type="button">
+              <button onClick={handleNotifyClick} className="btn-popover relative cursor-pointer" type="button">
                 <BsCircle className="text-white text-4xl bg-transparent absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" style={{ zIndex: 2 }} />
                 <MdOutlineFileDownload className="text-white text-2xl bg-transparent absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" style={{ zIndex: 3 }} />
               </button>
-              <button className="btn-popover relative" type="button">
+              <button onClick={handleNotifyClick} className="btn-popover relative cursor-pointer" type="button">
                 <BsCircle className="text-white text-4xl bg-transparent absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" style={{ zIndex: 2 }} />
                 <BsThreeDotsVertical className="text-white text-xl bg-transparent absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" style={{ zIndex: 3 }} />
               </button>
@@ -93,7 +99,7 @@ const TrendingNow = () => {
           <div className="mt-6">
             <div className="block">
               {data.map((song, index) => (
-                <div key={index} className="flex items-center justify-between py-2 pl-2 pr-1 rounded-lg border-transparent border w-full cursor-pointer hover:border-slate-800" onClick={() => handleClickSong(song)}>
+                <div key={index} className="flex items-center justify-between py-2 pl-2 pr-1 rounded-lg border-transparent border w-full hover:border-slate-800" onClick={() => handleClickSong(song)}>
                   <div className='text-white mx-4'>{songCounts[song.title]} # </div>
                   <div className="group relative w-14 h-14 min-w-[3.5rem]">
                     <span className="relative block">
@@ -105,12 +111,12 @@ const TrendingNow = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="flex w-full">
+                  <div className="flex w-full ">
                     <div className="ml-4 flex flex-col lg:my-auto">
-                      <div className="text-base line-clamp-1 text-title">
+                      <div className="text-base line-clamp-1 text-title cursor-pointer">
                         <a title={song.title} className=" text-white hover:underline">{song.title}</a>
                       </div>
-                      <div className="text-xs text-subtitle-hover line-clamp-1">
+                      <div className="text-xs text-subtitle-hover line-clamp-1 cursor-pointer">
                         <span className="text-items text-white hover:underline">
                           {song.artist.map((artist, index) => (
                             <span key={index}>{artist.name}</span>
@@ -119,12 +125,12 @@ const TrendingNow = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-center  text-xl gap-4 cursor-pointer text-white">
+                  <div className="flex items-center  text-xl gap-4 text-white">
                     <button>
-                      <MdOutlineFileDownload />
+                      <a className="cursor-pointer"><MdOutlineFileDownload /></a>
                     </button>
                     <button>
-                      <BsThreeDotsVertical />
+                      <a className="cursor-pointer"><BsThreeDotsVertical /></a>
                     </button>
                   </div>
                 </div>
@@ -133,6 +139,7 @@ const TrendingNow = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
       {currentSong && <MusicPlayer />}
     </div>
   );
