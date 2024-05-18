@@ -27,9 +27,9 @@ const DownloadModal = ({ showDownloadModal, handleClose }) => {
             open={showDownloadModal}
             onClose={() => {}}            
             aria-labelledby="Credential Modal"
-            style={{ backdropFilter: "blur(5px)" }}
+            style={{ backdropFilter: "blur(18px)" }}
         >
-            <div className="h-[450px] w-[320px] lg:w-[750px] grid grid-cols-1 lg:grid-cols-5 bg-black absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] rounded-xl">
+            <div className="h-[450px] w-[320px] lg:w-[700px] grid grid-cols-1 lg:grid-cols-5 bg-black absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] rounded-xl">
                 <div className='lg:col-span-2'>
                     <img src={downloadImage} alt='Download' className='h-[450px] w-full lg:rounded-tl-xl lg:rounded-bl-xl' />
                 </div>
@@ -41,10 +41,10 @@ const DownloadModal = ({ showDownloadModal, handleClose }) => {
                     <div className='flex items-center gap-2'>
                         <button className='bg-white h-10 w-24 lg:w-40 rounded-md text-xs lg:text-base' onClick={handleSubmit}>Get the Link</button>
                     </div>
-                    <div className='flex items-center justify-center'>
+                    <div className='flex items-center justify-center gap-3'>
                         <p className='text-white text-xs lg:text-sm'>Available on</p>
-                        <img src={appStoreImage} alt='App Store' className='h-10 lg:h-14 w-24 lg:w-32' />
-                        <img src={playStoreImage} alt='Play Store' className='h-10 lg:h-14 w-24 lg:w-32' />
+                        <img src={appStoreImage} alt='App Store' className='h-10 lg:h-14 w-24 lg:w-28' />
+                        <img src={playStoreImage} alt='Play Store' className='h-10 lg:h-14 w-24 lg:w-28' />
                     </div>
                 </div>
             </div>
