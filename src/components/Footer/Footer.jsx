@@ -26,7 +26,7 @@ const Footer = () => {
 
 
   return (
-    <footer className={`footer bg-[#0C0F12] ${showFooter ? 'flex' : 'hidden'}`}>
+    <footer className={`footer lg:p-[70px] md:p-[60px] sm:p-[40px] xs:p-[20px] bg-[#0C0F12] ${showFooter ? 'flex' : 'hidden'}`}>
       <div className="w-full flex lg:flex-row py-3 mb-8 border border-none rounded-lg bg-[#21252D] md:flex md:flex-row sm:flex-col md:justify-between md:items-center">
         <img src={Logo} alt="img" className="h-16 ml-8 hidden md:block" />
         <h2 className="ml-4 md:ml-0 ">Best way to Listen to Music!
@@ -41,7 +41,7 @@ const Footer = () => {
           </a>
         </div>
       </div>
-  
+
       <div className="footer-section">
         <h2>LATEST SONGS</h2>
         <p>

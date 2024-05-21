@@ -3,7 +3,11 @@ module.exports = {
   content: [ "./public/index.html",
   "./src/**/*.{js,ts,jsx,tsx}",],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        'xs': '410px', // Custom breakpoint for extra small screens
+      },
+    },
   },
   plugins: [],
 }
