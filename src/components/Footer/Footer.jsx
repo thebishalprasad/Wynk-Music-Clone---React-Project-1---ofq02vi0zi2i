@@ -27,9 +27,9 @@ const Footer = () => {
 
   return (
     <footer className={`footer bg-[#0C0F12] ${showFooter ? 'flex' : 'hidden'}`}>
-      <div className="w-full flex py-3 mb-8 border border-none rounded-lg bg-[#21252D] md:flex md:justify-between md:items-center">
-        <img src={Logo} alt="img" className="h-16 ml-8" />
-        <h2 className="-ml-80">Best way to Listen to Music!
+      <div className="w-full flex lg:flex-row py-3 mb-8 border border-none rounded-lg bg-[#21252D] md:flex md:flex-row sm:flex-col md:justify-between md:items-center">
+        <img src={Logo} alt="img" className="h-16 ml-8 hidden md:block" />
+        <h2 className="ml-4 md:ml-0 ">Best way to Listen to Music!
           <p>Don’t forget to install Wynk Music on your mobile phones</p>
         </h2>
         <div className="download-links flex items-center mr-8">
@@ -41,7 +41,7 @@ const Footer = () => {
           </a>
         </div>
       </div>
-
+  
       <div className="footer-section">
         <h2>LATEST SONGS</h2>
         <p>

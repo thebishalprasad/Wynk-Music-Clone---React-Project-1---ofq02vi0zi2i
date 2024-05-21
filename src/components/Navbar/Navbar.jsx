@@ -85,12 +85,12 @@ const Navbar = () => {
 
     return (
         <div className={`${showNavbar ? 'block' : 'hidden'}`}>
-            <nav className='h-[70px] w-full bg-[#1A1A1A] grid grid-cols-1 lg:grid-cols-3 gap-3'>
+            <nav className='h-[70px] w-full bg-[#1A1A1A] grid  grid-cols-2 lg:grid-cols-3 gap-3'>
                 <Link to="/" className='flex items-center px-[10px] lg:px-[100px] gap-2'>
                     <img src={logo} className='h-10 w-10 rounded-full' alt="Logo" />
                     <h3 className='text-lg lg:text-xl text-white'>Wynk Music</h3>
                 </Link>
-                <div className='lg:flex lg:col-span-2 items-center justify-end pr-4 lg:pr-16'>
+                <div className='lg:flex lg:col-span-2 items-center justify-end pr-4 lg:pr-16 hidden'>
                     <div className='flex items-center border border-[#575757] shadow-inner bg-[#212121] lg:shadow-[#2A2A2A] h-8 lg:h-10 w-52 lg:w-72 rounded-full px-4 lg:px-8 gap-2 lg:gap-3'>
                         <div className='flex gap-5' onClick={handleSearch}>
                             <CiSearch className='text-slate-200 h-5 lg:h-7 w-5 lg:w-7 cursor-pointer' />
@@ -133,6 +133,10 @@ const Navbar = () => {
                             <IoMenu className='text-white ml-3 lg:ml-5 h-6 lg:h-8 w-6 lg:w-8' />
                         </button>
                     </div>
+                </div>  
+                <div className='flex items-center justify-end px-5 gap-3 lg:hidden'>
+                <button onClick={handleSearch}><CiSearch className='text-white h-6 w-6'/></button>
+                <button onClick={() => setShowDropdown(!showDropdown)}><IoMenu className='text-white h-6 w-6' /></button>
                 </div>
             </nav>
             {showDropdown && (

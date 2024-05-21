@@ -2,7 +2,7 @@ import React from 'react';
 
 const About = () => {
   return (
-    <div className="pl-4 pr-4 md:pl-8 md:pr-20 py-8 border mx-4 md:mx-20 mt-12 border-[#3D464D] rounded-lg bg-transparent items-start">
+    <div className="px-8 py-8 mx-4 mt-12 md:pl-8 md:mx-20 border border-[#3D464D] rounded-lg bg-transparent">
       <h2 className='text-base md:text-lg text-[#FFFFFF] mb-3 md:mb-5 font-bold'>About Wynk Music
         <p className='text-xs md:text-sm text-[#C3C2C3] font-medium font-sans mt-2'>
           Wynk Music is a complete package that allows you free online music
