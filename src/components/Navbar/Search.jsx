@@ -6,7 +6,8 @@ const Search = () => {
     const { setCurrentSong, currentSong, searchData, setsearchData } = useUser();
 
     useEffect(() => {
-    }, [searchData]);
+        // Effect code if needed
+    }, [searchData, currentSong]);
 
     const handleClickSong = (song) => {
         setCurrentSong(song);
@@ -16,9 +17,13 @@ const Search = () => {
         <div className="h-full">
             <h2 className="text-left mx-20 my-10 text-xl text-white">Recent Searches</h2>
             <div className='mx-20 my-10'>
-                <div className="flex-shrink-0 mt-5 gap-2">
+                <div className="flex-shrink-0 gap-2">
                     {searchData && searchData.map((song) => (
-                        <div key={song._id} className="inline-block sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 my-5" onClick={() => handleClickSong(song)}>
+                        <div 
+                            key={song._id} 
+                            className="inline-block sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 my-5 cursor-pointer" 
+                            onClick={() => handleClickSong(song)}
+                        >
                             <a title={song.title} className="rounded-xl">
                                 <div className="rounded-xl">
                                     <img src={song.thumbnail} className="w-44 h-44 rounded-xl" alt={song.title} />
