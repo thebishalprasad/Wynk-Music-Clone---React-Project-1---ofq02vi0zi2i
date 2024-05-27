@@ -85,7 +85,7 @@ const Navbar = () => {
 
     return (
         <div className={`${showNavbar ? 'block' : 'hidden'}`}>
-            <nav className='h-[70px] bg-[#1A1A1A] md:px-10 lg:px-24 grid grid-cols-2 md:grid-cols-[30%,70%] lg:grid-cols-3 gap-2'>
+            <nav className='h-[70px] w-full bg-[#1A1A1A]  lg:px-24 md:px-10 sm:px-5 xs:px-3 grid grid-cols-2 md:grid-cols-[30%,70%] lg:grid-cols-3 gap-2'>
                 <Link to="/" className='flex items-center gap-2'>
                     <img src={logo} className='lg:h-12 h-10  lg:w-12 w-10 rounded-full' alt="Logo" />
                     <h3 className='lg:text-xl text-lg text-white'>Wynk Music</h3>
@@ -132,7 +132,8 @@ const Navbar = () => {
                         </button>
                     </div>
                 </div>
-                <div className='flex items-center justify-end px-5 gap-3 lg:hidden md:hidden'>
+                {/* For Small Screen */}
+                <div className='w-full flex items-center justify-end pl-5 gap-3 lg:hidden md:hidden'>
                     <button onClick={handleSearch}><CiSearch className='text-white h-6 w-6' /></button>
                     <button onClick={() => setShowDropdown(!showDropdown)}><IoMenu className='text-white h-6 w-6' /></button>
                 </div>
