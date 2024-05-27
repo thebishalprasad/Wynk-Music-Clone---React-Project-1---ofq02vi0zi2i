@@ -78,7 +78,7 @@ function Header() {
     return (
         <header className={`${showHeader ? 'block' : 'hidden'}`}>
             {/* For Large Screen */}
-            <div className='lg:flex md:flex md:text-nowrap md:overflow-y-hidden no-scrollbar lg:h-16 md:h-10 lg:ml-24 md:pl-10 text-[#f9f9f9] gap-7 items-center hidden'>
+            <div className='lg:flex md:flex md:text-nowrap md:overflow-y-hidden no-scrollbar lg:h-16 md:h-10 lg:ml-24 md:px-10 text-[#f9f9f9] gap-7 items-center hidden'>
                 <div className={`hover:underline underline-offset-[6px]  ${activeLink === 'All' ? 'text-white' : 'text-slate-400'}`}>
                     <Link to="/" title="All" onClick={() => handleLinkClick('All')}>All</Link>
                 </div>
