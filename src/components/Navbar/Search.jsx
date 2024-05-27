@@ -6,7 +6,6 @@ const Search = () => {
     const { setCurrentSong, currentSong, searchData, setsearchData } = useUser();
 
     useEffect(() => {
-        // Effect code if needed
     }, [searchData, currentSong]);
 
     const handleClickSong = (song) => {

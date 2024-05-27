@@ -78,8 +78,8 @@ function Header() {
     return (
         <header className={`${showHeader ? 'block' : 'hidden'}`}>
             {/* For Large Screen */}
-            <div className='lg:flex h-[70px] w-full text-[#f9f9f9] gap-7 items-center hidden'>
-                <div className={`hover:underline underline-offset-[6px] ml-24 ${activeLink === 'All' ? 'text-white' : 'text-slate-400'}`}>
+            <div className='lg:flex md:flex md:text-nowrap md:overflow-y-hidden no-scrollbar lg:h-16 md:h-10 lg:ml-24 md:pl-10 text-[#f9f9f9] gap-7 items-center hidden'>
+                <div className={`hover:underline underline-offset-[6px]  ${activeLink === 'All' ? 'text-white' : 'text-slate-400'}`}>
                     <Link to="/" title="All" onClick={() => handleLinkClick('All')}>All</Link>
                 </div>
 
@@ -153,7 +153,7 @@ function Header() {
             </div>
 
             {/* For Small Screen */}
-            <div className='lg:hidden flex items-center w-full text-nowrap text-[#f9f9f9] gap-5 ml-2 p-2 overflow-y-hidden'>
+            <div className='lg:hidden md:hidden flex items-center text-nowrap text-[#f9f9f9] gap-5 ml-2 p-2 overflow-y-hidden no-scrollbar'>
                 <Link to="/" className={`hover:underline underline-offset-[6px] ${activeLink === 'All' ? 'text-white' : 'text-slate-400'}`} onClick={() => handleLinkClick('All')}>All</Link>
                 <Link to="/trending" className={`hover:underline underline-offset-[6px] ${activeLink === 'Trending Now' ? 'text-white' : 'text-slate-400'}`} onClick={() => handleLinkClick('Trending Now')}>Trending Now</Link>
                 <Link to="/songs/old_songs" className={`hover:underline underline-offset-[6px] ${activeLink === 'Old Songs' ? 'text-white' : 'text-slate-400'}`} onClick={() => handleLinkClick('Old Songs')}>Old Songs</Link>

@@ -85,20 +85,20 @@ const Navbar = () => {
 
     return (
         <div className={`${showNavbar ? 'block' : 'hidden'}`}>
-            <nav className='h-[70px] w-full bg-[#1A1A1A] grid  grid-cols-2 lg:grid-cols-3 gap-3'>
-                <Link to="/" className='flex items-center px-[10px] lg:px-[100px] gap-2'>
-                    <img src={logo} className='h-10 w-10 rounded-full' alt="Logo" />
-                    <h3 className='text-lg lg:text-xl text-white'>Wynk Music</h3>
+            <nav className='h-[70px] bg-[#1A1A1A] md:px-10 lg:px-24 grid grid-cols-2 md:grid-cols-[30%,70%] lg:grid-cols-3 gap-2'>
+                <Link to="/" className='flex items-center gap-2'>
+                    <img src={logo} className='lg:h-12 h-10  lg:w-12 w-10 rounded-full' alt="Logo" />
+                    <h3 className='lg:text-xl text-lg text-white'>Wynk Music</h3>
                 </Link>
-                <div className='lg:flex lg:col-span-2 items-center justify-end pr-4 lg:pr-16 hidden'>
-                    <div className='flex items-center border border-[#575757] shadow-inner bg-[#212121] lg:shadow-[#2A2A2A] h-8 lg:h-10 w-52 lg:w-72 rounded-full px-4 lg:px-8 gap-2 lg:gap-3'>
-                        <div className='flex gap-5' onClick={handleSearch}>
-                            <CiSearch className='text-slate-200 h-5 lg:h-7 w-5 lg:w-7 cursor-pointer' />
+                <div className='lg:flex lg:col-span-2 items-center justify-end px-1 hidden md:flex'>
+                    <div className='flex items-center border border-[#575757] shadow-inner bg-[#212121] lg:shadow-[#2A2A2A] h-9 lg:h-10 w-60 lg:w-72 rounded-full px-4 lg:px-8 gap-2 lg:gap-3'>
+                        <div className='flex gap-4' onClick={handleSearch}>
+                            <CiSearch className='text-slate-200 font-medium h-6 lg:h-8 w-6 lg:w-8 cursor-pointer' />
                             <input
                                 type='search'
                                 id='searchInput'
                                 placeholder='Search Songs'
-                                className='bg-transparent focus:outline-none text-white font-light text-base w-full lg:text-lg lg:w-50'
+                                className='bg-transparent focus:outline-none text-white font-light text-base lg:text-lg lg:w-50'
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                                 onKeyPress={handleKeyPress}
@@ -106,37 +106,35 @@ const Navbar = () => {
                         </div>
                     </div>
                     <div className='flex items-center justify-center gap-2 lg:gap-3 ml-4'>
-                        <span className="hover:opacity-60 cursor-pointer flex" onClick={handleSubscriptionClick}>
-                            <span className="text-white hidden lg:block">
-                                <BsCurrencyRupee className='h-4 lg:h-6 w-4 lg:w-6' />
-                            </span>
-                            <div className="text-white hidden lg:block ml-2 font-light">Manage Subscription</div>
-                        </span>
+                        <div className="hover:opacity-60 cursor-pointer flex items-center" onClick={handleSubscriptionClick}>
+                            <BsCurrencyRupee className='h-5 lg:h-6 w-5 lg:w-6 pt-[2px] text-white gap-2'/>
+                            <div className="text-white hidden md:block lg:text-lg text-base font-light">Manage Subscription</div>
+                        </div>
                         {isUserLoggedIn === true ? (
                             <>
-                                <RxDividerVertical className='text-white h-7 lg:h-10 w-7 lg:w-10' />
-                                <button className='hover:opacity-60 cursor-pointer text-white flex items-center h-8 lg:h-10 gap-1' onClick={handleMyMusicClick}>
+                                <RxDividerVertical className='text-white h-7 lg:h-10 w-7 lg:w-10 hidden lg:flex' />
+                                <button className='hover:opacity-60 cursor-pointer text-white items-center h-8 lg:h-10 gap-2 hidden lg:flex' onClick={handleMyMusicClick}>
                                     <LiaMusicSolid className='h-4 lg:h-5 w-4 lg:w-5' />
-                                    <div className="text-white hidden lg:block ml-2 font-light">My music</div>
+                                    <div className="text-white hidden lg:block lg:text-lg font-light">My music</div>
                                 </button>
                             </>
                         ) : (
                             <>
-                                <RxDividerVertical className='text-white h-7 lg:h-10 w-7 lg:w-10' />
-                                <button className='hover:opacity-60 cursor-pointer text-white flex items-center h-8 lg:h-10 gap-1' onClick={() => setShowLogin(true)}>
+                                <RxDividerVertical className='text-white h-7 lg:h-10 w-7 lg:w-10 hidden lg:flex' />
+                                <button className='hover:opacity-60 cursor-pointer text-white items-center h-8 lg:h-10 gap-2 hidden lg:flex' onClick={() => setShowLogin(true)}>
                                     <FaRegUser className='h-4 lg:h-5 w-4 lg:w-5' />
-                                    <div className="text-white hidden lg:block ml-2 font-light">Login</div>
+                                    <div className="text-white hidden lg:block lg:text-lg font-light">Login</div>
                                 </button>
                             </>
                         )}
                         <button onClick={() => setShowDropdown(!showDropdown)}>
-                            <IoMenu className='text-white ml-3 lg:ml-5 h-6 lg:h-8 w-6 lg:w-8' />
+                            <IoMenu className='text-white ml-3 lg:ml-5 h-6 lg:h-7 w-6 lg:w-7' />
                         </button>
                     </div>
-                </div>  
-                <div className='flex items-center justify-end px-5 gap-3 lg:hidden'>
-                <button onClick={handleSearch}><CiSearch className='text-white h-6 w-6'/></button>
-                <button onClick={() => setShowDropdown(!showDropdown)}><IoMenu className='text-white h-6 w-6' /></button>
+                </div>
+                <div className='flex items-center justify-end px-5 gap-3 lg:hidden md:hidden'>
+                    <button onClick={handleSearch}><CiSearch className='text-white h-6 w-6' /></button>
+                    <button onClick={() => setShowDropdown(!showDropdown)}><IoMenu className='text-white h-6 w-6' /></button>
                 </div>
             </nav>
             {showDropdown && (
