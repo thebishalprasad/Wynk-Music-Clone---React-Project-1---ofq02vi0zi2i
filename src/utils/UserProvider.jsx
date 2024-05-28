@@ -1,37 +1,41 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
 
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [userName, setUserName] = useState(localStorage.getItem('userName'));
+  const [userName, setUserName] = useState(localStorage.getItem('userName') || 'Guest');
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(localStorage.getItem('isUserLoggedIn') === 'true');
   const [currentSong, setCurrentSong] = useState(null);
-  const [searchData, setsearchData] = useState([]);
+  const [searchData, setSearchData] = useState([]);
 
+  useEffect(() => {
+    setUserName(localStorage.getItem('userName') || 'Guest');
+    setIsUserLoggedIn(localStorage.getItem('isUserLoggedIn') === 'true');
+  }, []);
 
   const loginSignupContext = (userName, token) => {
     setUserName(userName);
-    setIsUserLoggedIn(true)
+    setIsUserLoggedIn(true);
     localStorage.setItem('userName', userName);
-    localStorage.setItem('isUserLoggedIn', true);
+    localStorage.setItem('isUserLoggedIn', 'true');
     localStorage.setItem('token', token);
-    console.log("User signed in:", userName);
   };
 
   const signOutContext = () => {
-    setUserName('Welcome to Wynk');
-    setIsUserLoggedIn(false)
-    localStorage.setItem('userName', 'Welcome to Wynk');
-    localStorage.setItem('isUserLoggedIn', false);
-    localStorage.setItem('token', '');
-    console.log("User signed out");
+    setUserName('Guest');
+    setIsUserLoggedIn(false);
+    localStorage.setItem('userName', 'Guest');
+    localStorage.setItem('isUserLoggedIn', 'false');
+    localStorage.removeItem('token');
   };
 
-  const value = { userName, loginSignupContext, signOutContext, isUserLoggedIn, setCurrentSong, currentSong,searchData,setsearchData };
+  const value = {
+    userName,loginSignupContext,signOutContext,isUserLoggedIn,setCurrentSong,
+    currentSong,searchData,setSearchData};
 
   return (
-    <UserContext.Provider value={value}>{
-      children}
+    <UserContext.Provider value={value}>
+      {children}
     </UserContext.Provider>
   );
 };

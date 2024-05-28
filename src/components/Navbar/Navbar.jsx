@@ -143,8 +143,8 @@ const Navbar = () => {
                     <Dropdown userName={userName} />
                 </div>
             )}
-            <LoginModal showLogin={showLogin} handleClose={() => setShowLogin(false)} navigate={navigate} />
             <ToastContainer />
+            <LoginModal showLogin={showLogin} handleClose={() => setShowLogin(false)} navigate={navigate} />
         </div>
     );
 };
