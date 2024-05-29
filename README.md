@@ -2,7 +2,7 @@
 
 <h2>Project Overview</h2>
 
-<p>This project is a clone of the popular music streaming platform, Ganna. It's a breakthrough project for me as it's the first time I've built a large-scale project without following any tutorials. Despite some code repetition and unconventional file structure, this project has been a great learning experience.</p>
+<p>This project is a clone of the popular music streaming platform, Wynk It's a breakthrough project for me as it's the first time I've built a large-scale project without following any tutorials. Despite some code repetition and unconventional file structure, this project has been a great learning experience.</p>
 
 ## Live View
 
@@ -19,13 +19,10 @@
 <p>The project is built using the following technologies:</p>
 
 - **React:** A JavaScript library for building user interfaces.
-- **Next.js:** A React framework for production-grade applications.
-- **@emotion/react and @emotion/styled:** Libraries for writing CSS styles with JavaScript.
 - **@mui/material and @mui/icons-material:** Material-UI components for faster and easier web development.
 - **react-h5-audio-player:** A customizable HTML5 audio player for React.
-- **react-hot-toast:** A library for adding toast notifications to React apps.
+- **react-toast:** A library for adding toast notifications to React apps.
 - **styled-components:** A library for styling React components.
-- **swiper:** A modern mobile touch slider.
 
 ## API
 
