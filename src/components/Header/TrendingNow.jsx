@@ -56,15 +56,15 @@ const TrendingNow = () => {
   }, []);
 
   return (
-    <div className="h-full">
+    <div className="h-full w-full">
       <div className="xs:hidden lg:flex items-center text-gray-300 text-xs ml-24 my-2">
         <a href="/" className="text-[#394144] transition duration-200">Home</a>
         <span><BsDot /></span>
         <span>Trending in Hindi</span>
       </div>
-      <div className="flex lg:ml-24 xs:ml-5 xs:mt-5 lg:my-10">
+      <div className="flex lg:ml-24 xs:ml-5 xs:mt-5 ">
         <img src={TrendingImage} className="rounded-md lg:h-52 lg:w-52 md:h-48 md:w-48 sm:h-40 sm:w-40 xs:h-36 xs:w-36" alt="Trending" />
-        <div className="lg:mx-20 xs:mx-5 xs:mt-10 w-full">
+        <div className="lg:w-full lg:ml-16 xs:mx-5 xs:mt-10 ">
           <div>
             <h1 className="text-slate-50 lg:text-4xl xs:text-lg">Trending in Hindi</h1>
             <div className='flex items-center text-slate-400 my-3 text-xs'>
@@ -73,7 +73,7 @@ const TrendingNow = () => {
               <span>20 Songs</span>
             </div>
           </div>
-          <div className="lg:mt-4 flex justify-between">
+          <div className="flex py-2 justify-between">
             <div className="inline-flex gap-4">
               <button className="bg-[#E3375C] border-none rounded-full p-2 text-slate-200 w-32 flex items-center" onClick={handlePlaySongs}>
                 <FaPlay className="inline-flex text-base mx-2" />Play Songs
@@ -84,7 +84,7 @@ const TrendingNow = () => {
               </button>
             </div>
 
-            <div className="inline-flex ml-10 gap-14 justify-end">
+            <div className="inline-flex gap-14 justify-between mr-2">
               <button onClick={handleNotifyClick} className="relative cursor-pointer" type="button">
                 <BsCircle className="text-white text-4xl bg-transparent absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
                 <MdOutlineFileDownload className="text-white text-2xl bg-transparent absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
@@ -96,7 +96,7 @@ const TrendingNow = () => {
             </div>
           </div>
 
-          <div className="mt-6">
+          <div className="mt-6 overflow-hidden">
             <div className="block">
               {data.map((song, index) => (
                 <div key={song.id} className="flex items-center justify-between py-2 pl-2 pr-1 rounded-lg border-transparent border w-full hover:border-slate-800" onClick={() => handleClickSong(song)}>

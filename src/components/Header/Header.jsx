@@ -168,7 +168,7 @@ function Header() {
                         </span>
                     </button>
                     {isMoodOpen && (
-                        <div className="absolute top-full w-48 h-auto mt-2 p-4 rounded-xl border-none border-[#575757] shadow-inner bg-[#212121] shadow-[#2A2A2A] ">
+                        <div className="absolute top-full w-48 h-auto mt-2 p-4 rounded-xl border-none border-[#575757] shadow-inner bg-[#212121] shadow-[#2A2A2A] z-10">
                             {['Happy', 'Excited', 'Romantic', 'Sad', 'Party', 'Dance'].map(mood => (
                                 <button key={mood} onClick={() => handleMoodSelect(mood)} className={`py-2 block ${activeLink === mood ? 'text-white' : 'text-slate-300'}`}>{mood}</button>
                             ))}
@@ -176,7 +176,7 @@ function Header() {
                     )}
                 </div>
 
-                <div className='relative'>
+                <div className='relative z-10'>
                     <button className={`hover:underline underline-offset-[6px] flex items-center ${activeLink === 'Top Albums' ? 'text-white' : 'text-slate-400'}`} onClick={() => setAlbumOpen(!isAlbumOpen)}>
                         Top Albums
                         <span className="ml-1">
