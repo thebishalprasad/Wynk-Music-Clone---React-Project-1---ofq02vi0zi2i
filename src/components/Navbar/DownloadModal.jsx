@@ -58,6 +58,7 @@ const DownloadModal = ({ showDownloadModal, handleClose }) => {
                             width: { xs: '100%', lg: '40%' },
                             height: '100%',
                             borderRadius: { lg: '16px 0 0 16px' },
+                            display: { xs: 'none', lg: 'block' },
                         }}
                     />
                     <Box

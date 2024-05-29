@@ -55,7 +55,7 @@ const LoginModal = ({ showLogin, handleClose, navigate }) => {
             style={{ backdropFilter: "blur(18px)" }}
         >
             <div className="h-[450px] w-[320px] lg:w-[700px] grid grid-cols-1 lg:grid-cols-5 bg-black absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] rounded-xl">
-                <div className='lg:col-span-2'>
+                <div className='lg:col-span-2 hidden lg:block '>
                     <img src={loginImg} alt='Login/SignUp' className='h-[450px] w-full lg:rounded-tl-xl lg:rounded-bl-xl' />
                 </div>
                 <div className='lg:col-span-3 p-5 flex flex-col items-center justify-around'>
