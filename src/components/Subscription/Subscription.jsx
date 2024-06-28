@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useUser } from '../../utils/UserProvider';
 import { useNavigate } from 'react-router-dom';
-import { LuCrown } from "react-icons/lu";
+import { LuCrown, LuDot } from "react-icons/lu";
+
 
 
 const Subscription = () => {
@@ -27,28 +28,29 @@ const Subscription = () => {
                         <LuCrown className='mt-2 ml-2' />
                     </div>
                     <p className="text-center text-gray-400 mb-6">Get the best of music & podcasts</p>
-                    <div className="text-white mb-4">
-                        <div className="flex justify-between mb-2">
+                    <div className="text-white  mb-4">
+                        <div className="grid grid-cols-3 space-x-40 mb-2">
                             <span>Benefits</span>
                             <span className="text-red-500">Now</span>
                             <span className="text-red-500">Premium</span>
                         </div>
-                        <div className="flex justify-between mb-2">
+                        <div className="grid grid-cols-3 space-x-40 mb-2">
                             <span>Unlimited Streaming</span>
                             <span>✔️</span>
                             <span>✔️</span>
                         </div>
-                        <div className="flex justify-between mb-2">
+                        <div className="grid grid-cols-3 space-x-40 mb-2">
                             <span>Unlimited Downloads</span>
                             <span>✔️</span>
                             <span>✔️</span>
                         </div>
-                        <div className="flex justify-between mb-2">
+                        <div className="grid grid-cols-3 space-x-40 mb-2">
                             <span>Ad free Music</span>
                             <span>❌</span>
                             <span>✔️</span>
                         </div>
                     </div>
+
                     <div className="flex justify-center items-center gap-8 mt-10">
                         <div className="relative w-32 h-32 rounded-xl bg-gray-800 text-white shadow-lg flex flex-col justify-center items-center">
                             <div className="absolute top-1 right-1 bg-red-500 rounded-full w-8 h-8 flex justify-center items-center">
@@ -96,13 +98,25 @@ const Subscription = () => {
                     </div>
                 </div>
             </div>
-            <p className="text-gray-400 mb-4">All amounts are inclusive of 18% GST.</p>
-            <p className="text-gray-400 mb-4">By clicking on Continue button, you agree to Wynk's Terms of service and Privacy policy.</p>
-            <div className="flex justify-between items-center mb-6">
-                <span className="text-white">Amount to be paid</span>
-                <span className="text-white">₹399</span>
+            <div className='mx-40 my-5'>
+                <span className='flex'>
+                    <LuDot className='h-5 text-slate-50' />
+                    <p className="text-gray-400">All amounts are inclusive of 18% GST.</p>
+                </span>
+                <span className='flex'>
+                    <LuDot className='h-5 text-slate-50' />
+                    <p className="text-gray-400 ">By clicking on Continue button, you agree to Wynk's Terms of service and Privacy policy.</p>
+                </span>
             </div>
-            <button className="bg-blue-500 text-white py-2 px-4 rounded-lg w-full">Continue</button>
+            <div className="bg-gray-800 rounded-lg mx-40 flex-row p-2 justify-between items-center max-w-5xl ">
+                <div className='flex flex-col'>
+                    <h2 className="text-white text-sm font-bold">Amount to be paid</h2>
+                    <p className="text-gray-400 text-sm font-medium">₹399</p>
+                </div>
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    Continue
+                </button>
+            </div>
 
         </div>
     )
