@@ -18,7 +18,7 @@ const Subscription = () => {
 
     return (
         <div>
-            <div className="w-full h-[230px] bg-[#1f272b] box-border flex relative justify-center" style={{ clipPath: 'ellipse(100% 75% at 50% 15%)' }}>
+            <div className="w-full h-[200px] bg-[#1f272b] box-border flex relative justify-center" style={{ clipPath: 'ellipse(100% 75% at 50% 15%)' }}>
                 <img className="w-[14%] -mt-32 " alt="logo" src="https://pay.wynk.in/static/media/Wynklogo-white.97aea089.svg" />
             </div>
             <div className="flex justify-center relative items-center -mt-28 z-20">
@@ -108,7 +108,8 @@ const Subscription = () => {
                     <p className="text-gray-400 ">By clicking on Continue button, you agree to Wynk's Terms of service and Privacy policy.</p>
                 </span>
             </div>
-            <div className="bg-gray-800 rounded-lg mx-40 flex-row p-2 justify-between items-center max-w-5xl ">
+            <div className="bg-gray-800 rounded-lg mx-40 flex-row p-2 items-center max-w-5xl ">
+                <div className='flex flex-row justify-between'>
                 <div className='flex flex-col'>
                     <h2 className="text-white text-sm font-bold">Amount to be paid</h2>
                     <p className="text-gray-400 text-sm font-medium">₹399</p>
@@ -116,6 +117,7 @@ const Subscription = () => {
                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                     Continue
                 </button>
+                </div>
             </div>
 
         </div>
