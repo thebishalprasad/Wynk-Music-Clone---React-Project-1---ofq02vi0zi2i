@@ -34,7 +34,7 @@ const TrendingNow = () => {
     })
     .then((response) => {
       console.log(response);
-      setWatchList([...watchList, songId]); // Add song to watch list state
+      setWatchList([...watchList, songId]); 
     })
     .catch((error) => {
       console.error('Error making the PATCH request:', error);
