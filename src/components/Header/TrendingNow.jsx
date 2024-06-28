@@ -14,7 +14,32 @@ const TrendingNow = () => {
   const { setCurrentSong, currentSong } = useUser();
   const [data, setData] = useState([]);
   const [isFollowing, setIsFollowing] = useState(false);
-  const [songCounts, setSongCounts] = useState({});
+  const [watchList, setWatchList] = useState([]);
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    setWatchList([]); // Reset watch list state when current song changes
+  }, [currentSong]);
+
+  const onClickHandler = (songId) => {
+    axios.patch('https://academics.newtonschool.co/api/v1/music/favorites/like', { songId }, {
+      headers: {
+        projectID: PROJECT_ID,
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then((response) => {
+      console.log(response);
+      setWatchList([...watchList, songId]); // Add song to watch list state
+    })
+    .catch((error) => {
+      console.error('Error making the PATCH request:', error);
+    });
+  };
 
   const fetchData = async () => {
     try {
@@ -50,10 +75,6 @@ const TrendingNow = () => {
   const handleNotifyClick = () => {
     toast.info('Feature under development');
   };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   return (
     <div className="h-full w-full">
@@ -126,6 +147,11 @@ const TrendingNow = () => {
                     </div>
                   </div>
                   <div className="flex items-center text-xl gap-4 text-white">
+                  {token && (watchList.includes(song._id) || currentSong?._id === song._id) ? (
+                      <i className="fa-solid fa-heart" style={{ color: 'Red' }}></i>
+                    ) : (
+                      <i className="fa-regular fa-heart" style={{ color: 'white' }} onClick={() => onClickHandler(song._id)}></i>
+                    )}
                     <button>
                       <a className="cursor-pointer"><MdOutlineFileDownload /></a>
                     </button>
