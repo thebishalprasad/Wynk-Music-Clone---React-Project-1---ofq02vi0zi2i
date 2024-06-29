@@ -15,7 +15,6 @@ const TrendingNow = () => {
   const [data, setData] = useState([]);
   const [isFollowing, setIsFollowing] = useState(false);
   const [watchList, setWatchList] = useState([]);
-  // const [likedSong, setlikedSong] = useState([-1,-1,-1,-1]);
   const token = localStorage.getItem("token");
 
   const fetchFavorites = useCallback(async () => {
@@ -80,7 +79,6 @@ const TrendingNow = () => {
           }
         });
   
-        // Show toast notification
         toast.success(`Music ${action} favorite`);
       } else {
         toast.error(`Failed to ${action} favorite`);
