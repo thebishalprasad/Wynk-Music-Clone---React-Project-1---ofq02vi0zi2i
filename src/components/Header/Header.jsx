@@ -78,7 +78,7 @@ function Header() {
     return (
         <header className={`${showHeader ? 'block' : 'hidden'}`}>
             {/* For Large Screen */}
-            <div className='lg:flex md:flex md:text-nowrap md:overflow-y-hidden no-scrollbar lg:h-16 md:h-10 lg:ml-24 md:px-10 text-[#f9f9f9] gap-7 items-center hidden'>
+            <div className='lg:flex md:flex md:text-nowrap no-scrollbar lg:h-16 md:h-10 lg:ml-24 md:px-10 text-[#f9f9f9] gap-7 items-center hidden'>
                 <div className={`hover:underline underline-offset-[6px]  ${activeLink === 'All' ? 'text-white' : 'text-slate-400'}`}>
                     <Link to="/" title="All" onClick={() => handleLinkClick('All')}>All</Link>
                 </div>
@@ -107,7 +107,7 @@ function Header() {
                             </div>
                         </button>
                         {isMoodOpen && (
-                            <div className="absolute top-full w-48 h-auto mt-2 p-4 rounded-xl border-none border-[#575757] shadow-inner bg-[#212121] shadow-[#2A2A2A] z-10 left-1/2 transform -translate-x-1/2">
+                            <div className="absolute top-full w-48 h-auto p-4 rounded-xl border-none border-[#575757] shadow-inner bg-[#212121] shadow-[#2A2A2A] z-50 left-1/2 transform -translate-x-1/2">
                                 <div className='bg-transparent items-center justify-center'>
                                     {['Happy', 'Excited', 'Romantic', 'Sad', 'Party', 'Dance'].map(mood => (
                                         <button key={mood} onClick={() => handleMoodSelect(mood)} className={`py-2 block ${activeLink === mood ? 'text-white' : 'text-slate-300'}`}>{mood}</button>
@@ -130,7 +130,7 @@ function Header() {
                             </div>
                         </button>
                         {isAlbumOpen && (
-                            <div className="absolute top-full w-48 h-auto mt-2 p-4 rounded-xl border-none border-[#575757] shadow-inner bg-[#212121] shadow-[#2A2A2A] z-10 left-1/2 transform -translate-x-1/2">
+                            <div className="absolute top-full w-48 h-auto p-4 rounded-xl border-none border-[#575757] shadow-inner bg-[#212121] shadow-[#2A2A2A] z-50 left-1/2 transform -translate-x-1/2">
                             <div className='bg-transparent items-center justify-center'>
                                 <Link to="/albums/hindi" className={`py-2 block ${activeLink === 'Top Hindi Albums' ? 'text-white' : 'text-slate-300'}`} onClick={() => handleLinkClick('Top Hindi Albums')}>Top Hindi Albums</Link>
                                 <Link to="/albums/english" className={`py-2 block ${activeLink === 'Top English Albums' ? 'text-white' : 'text-slate-300'}`} onClick={() => handleLinkClick('Top English Albums')}>Top English Albums</Link>

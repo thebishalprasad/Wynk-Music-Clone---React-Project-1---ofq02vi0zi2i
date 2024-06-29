@@ -15,7 +15,6 @@ const MyMusic = (songId) => {
   const [favorites, setFavorites] = useState([]);
   const [showHeader, setShowHeader] = useState(true); 
   const location = useLocation();
-//console.log(songId);
 
   useEffect(() => {
     setShowHeader(location.pathname !== '/mymusic'); 

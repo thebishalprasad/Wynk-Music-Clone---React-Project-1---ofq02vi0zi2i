@@ -21,7 +21,22 @@
 .rhap_container {
     background-color: #252525 !important;
     box-shadow: none !important;
+    
 }
+.rhap_controls-section{
+    width: 100% !important;
+}
+.rhap_additional-controls{
+    width: 33% !important;
+}
+.rhap_main-controls{
+    
+    width: 33% !important;
+}
+.rhap_volume-controls{
+    width: 33% !important;
+}
+
 
 input[type="range"] {
     -webkit-appearance: none;
