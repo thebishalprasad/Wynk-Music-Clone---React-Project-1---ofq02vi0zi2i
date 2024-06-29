@@ -15,6 +15,7 @@ const TrendingNow = () => {
   const [data, setData] = useState([]);
   const [isFollowing, setIsFollowing] = useState(false);
   const [watchList, setWatchList] = useState([]);
+  // const [likedSong, setlikedSong] = useState([-1,-1,-1,-1]);
   const token = localStorage.getItem("token");
 
   const fetchFavorites = useCallback(async () => {
@@ -25,7 +26,7 @@ const TrendingNow = () => {
           Authorization: `Bearer ${token}`
         }
       });
-      setWatchList(response.data.data.map(fav => fav.songId));
+      setWatchList(response.data.data.songs.map(fav => fav._id));
     } catch (error) {
       console.error('Error fetching favorites:', error);
     }
@@ -55,28 +56,6 @@ const TrendingNow = () => {
   useEffect(() => {
     fetchFavorites();
   }, [currentSong, fetchFavorites]);
-
-  // const handleFavoriteToggle = async (songId) => {
-  //   const isFavorite = watchList.includes(songId);
-  //   const url = `https://academics.newtonschool.co/api/v1/music/favorites/${isFavorite ? 'unlike' : 'like'}`;
-  //   const action = isFavorite ? 'removed from' : 'added to';
-
-  //   try {
-  //     await axios.patch(url, { songId }, {
-  //       headers: {
-  //         projectID: PROJECT_ID,
-  //         Authorization: `Bearer ${token}`
-  //       }
-  //     });
-  //     setWatchList(prevWatchList => isFavorite
-  //       ? prevWatchList.filter(id => id !== songId)
-  //       : [...prevWatchList, songId]);
-  //     toast.success(`Music ${action} favorite`);
-  //   } catch (error) {
-  //     console.error('Error updating favorite:', error);
-  //     toast.error('Error updating favorite');
-  //   }
-  // };
 
   const handleFavoriteToggle = async (songId) => {
     const isFavorite = watchList.includes(songId);
